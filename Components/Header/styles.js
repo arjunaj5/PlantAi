@@ -3,6 +3,7 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
 container: {
 position: 'absolute',
+backgroundColor: '#fff',
 top: 50,
 zIndex:2,
 flexDirection: 'row',
@@ -18,7 +19,7 @@ logo: {
 menu: {
     width: 25,
     height: 25,
-    resizeMode: 'contain'
+    resizeMode: 'contain',
 },
 });
 
