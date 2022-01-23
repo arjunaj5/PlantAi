@@ -8,6 +8,7 @@ top: 50,
 zIndex:2,
 flexDirection: 'row',
 justifyContent: 'space-between',
+alignItems: 'center',
 width: '100%',
 paddingHorizontal: 20
 },
