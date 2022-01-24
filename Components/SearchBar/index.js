@@ -14,9 +14,6 @@ const SearchBar = () => {
                 onChangeText={onChangeSearch}
                 value={searchQuery}
             />
-            <Text>
-                {searchQuery}
-            </Text>
       </>
     );
   };
