@@ -1,6 +1,6 @@
 import React from "react";
 import { Searchbar } from 'react-native-paper';
-import { View } from "react-native-web";
+import { Text } from "react-native-web";
 
 const SearchBar = () => {
     const [searchQuery, setSearchQuery] = React.useState('');
@@ -14,9 +14,9 @@ const SearchBar = () => {
                 onChangeText={onChangeSearch}
                 value={searchQuery}
             />
-            <View>
+            <Text>
                 {searchQuery}
-            </View>
+            </Text>
       </>
     );
   };

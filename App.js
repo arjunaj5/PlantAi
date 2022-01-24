@@ -11,7 +11,6 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <Header />
       <SearchBar />
-      <Text>Open up App.js to start working on your app</Text>
       <StatusBar style="auto" />
     </SafeAreaView>
   );
