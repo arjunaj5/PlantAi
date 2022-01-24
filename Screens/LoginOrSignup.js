@@ -4,12 +4,15 @@ import Header from '../Components/LoginOrSignup/Header'
 import InputBox from '../Components/LoginOrSignup/InputBox';
 
 function LoginOrSignup() {
+  const email = require('../assets/images/login/email.png')
+  const username = require('../assets/images/login/username.png')
+  const password = require('../assets/images/login/password.png')
   return <View style = {styles.container}>
     <Header />
     <View style={styles.form}>
-      <InputBox placeholder={'User name'} />
-      <InputBox placeholder={'Email Id'} />
-      <InputBox placeholder={'Password'} />
+      <InputBox placeholder={'User name'} img = {username} />
+      <InputBox placeholder={'Email Id'} img = {email} />
+      <InputBox placeholder={'Password'} img = {password} />
     </View>
   </View>;
 }
