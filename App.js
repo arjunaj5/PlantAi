@@ -5,12 +5,12 @@ import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 // Components
 import Header from './Components/Header';
 import SearchBar from './Components/SearchBar';
+import LoginOrSignup from './Screens/LoginOrSignup';
 
 export default function App() {
   return (
     <SafeAreaView style={styles.container}>
-      <Header />
-      <SearchBar />
+      <LoginOrSignup />
       <StatusBar style="auto" />
     </SafeAreaView>
   );
