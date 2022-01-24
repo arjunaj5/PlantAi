@@ -2,11 +2,11 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import styles from './styles';
 
-const Header = () => {
+const Header = ({status, setStatus}) => {
   return (
       <View style = {styles.banner}>
-        <Text style = {styles.text}> Login </Text>
-        <Text style = {styles.text}> Signup </Text>
+        <Text style = {styles.text} onPress={() => setStatus('login')}> Login </Text>
+        <Text style = {styles.text} onPress = {() => setStatus('signup')}> Signup </Text>
       </View>
   );
 }
