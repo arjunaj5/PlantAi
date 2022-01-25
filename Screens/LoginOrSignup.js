@@ -21,13 +21,14 @@ function LoginOrSignup() {
       {status !== 'login' && 
       <InputBox placeholder={'Email Id'} img = {email} /> }
       <InputBox placeholder={'Password'} img = {password} />
-    </View>
-    <Button style={styles.button} color = "#3BA776" mode="contained" onPress={() => console.log('Pressed')}>
+
+      <Button style={styles.button} color = "#3BA776" mode="contained" onPress={() => console.log('Pressed')}>
       <Image
         source={arrow}
         style={styles.arrow}
         />
-    </Button>
+      </Button>
+    </View>
   </View>;
 }
 
@@ -45,16 +46,17 @@ const styles = StyleSheet.create({
     width: '90%',
     },
   form: {
-    paddingVertical: 25
+    paddingVertical: 25,
+    alignItems: 'center'
   },
   button: {
-    marginHorizontal: 'auto',
+    marginTop: 20,
+    width: 100,
     borderRadius: 19,
   },
   arrow: {
     width:35,
     height:10,
-    marginHorizontal: 15
   }
 });
 
