@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View, Image } from 'react-native';
 import Header from '../Components/LoginOrSignup/Header'
 import InputBox from '../Components/LoginOrSignup/InputBox';
 
@@ -22,8 +22,12 @@ function LoginOrSignup() {
       <InputBox placeholder={'Email Id'} img = {email} /> }
       <InputBox placeholder={'Password'} img = {password} />
     </View>
-    <Button style={styles.button} color = "#3BA776" icon={arrow} mode="contained" onPress={() => console.log('Pressed')}>
-  </Button>
+    <Button style={styles.button} color = "#3BA776" mode="contained" onPress={() => console.log('Pressed')}>
+      <Image
+        source={arrow}
+        style={styles.arrow}
+        />
+    </Button>
   </View>;
 }
 
@@ -44,9 +48,13 @@ const styles = StyleSheet.create({
     paddingVertical: 25
   },
   button: {
-    width: 90,
-    height: 30,
-    marginHorizontal: 'auto'
+    marginHorizontal: 'auto',
+    borderRadius: 19,
+  },
+  arrow: {
+    width:35,
+    height:10,
+    marginHorizontal: 15
   }
 });
 
