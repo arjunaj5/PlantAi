@@ -3,7 +3,6 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
   container: {
     width: '90%',
-    height: '100%',
   },
   button: {
     marginTop: 30,

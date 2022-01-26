@@ -4,6 +4,7 @@ import { Button } from 'react-native-paper';
 import News from '../../Components/Home/News';
 import SearchBar from '../../Components/Home/SearchBar';
 import Weather from '../../Components/Home/Weather';
+import Header from '../../Components/Header';
 import styles from './styles'
 
 const search = require('../../assets/images/Home/search.png')
