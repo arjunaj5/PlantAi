@@ -8,31 +8,55 @@ import DefaultView from '../Layouts/DefaultView';
 
 const email = require('../assets/images/login/email.png')
 const username = require('../assets/images/login/username.png')
-const password = require('../assets/images/login/password.png')
+const passwordimg = require('../assets/images/login/password.png')
 const arrow = require('../assets/images/login/arrow.png')
+
+const verifyUser = (userName, password) => {
+  const data = {userName, password}
+  console.log("UserName:" + userName)
+  fetch('http://localhost:8000/user/check/', {
+    method: 'POST',
+   
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data) // body data type must match "Content-Type" header
+  }).then((response) => {
+    console.log(response)
+    }).catch((error) => {
+      console.log(error)
+    })
+
+}
 
 function LoginOrSignup( { navigation }) {
 
   const [status, setStatus] = useState('login')
+  const [userName, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+  const [emailId, setEmailId] = useState('')
+
   return (
     <DefaultView hideHeader>
       <View style = {styles.container}>
         <Header status = {status} setStatus = {setStatus}/>
 
         <View style={styles.form}>
-          <InputBox placeholder={'User name'} img = {username} />
+          <InputBox placeholder={'User name'} img = {username} value = {userName} setValue = {setUsername} />
           {status !== 'login' && 
-          <InputBox placeholder={'Email Id'} img = {email} /> }
-          <InputBox placeholder={'Password'} img = {password} />
+          <InputBox placeholder={'Email Id'} img = {email} value = {emailId} setValue = {setEmailId} /> }
+          <InputBox placeholder={'Password'} img = {passwordimg} value = {password} setValue = {setPassword} />
 
           <Button style={styles.button} color = "#3BA776" mode="contained" 
-            onPress={() =>
-              navigation.navigate('Home', { name: 'Home' })
-            }
+            onPress={() => {
+              if(status === 'login')
+              verifyUser(userName, password)
+            }}
           >
           <Image
             source={arrow}
             style={styles.arrow}
+            resizeMode='contain'
             />
           </Button>
         </View>
@@ -60,14 +84,11 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 20,
-    width: '35%',
-    maxWidth:300,
-    paddingVertical:5,
+    height: 45,
+    width: '50%',
     borderRadius: 19,
   },
   arrow: {
-    width:35,
-    height:15,
   }
 });
 

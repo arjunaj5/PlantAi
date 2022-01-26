@@ -3,7 +3,7 @@ import { View, StyleSheet, TextInput, Image } from "react-native";
 
 
 
-function InputBox({placeholder, img}) {
+function InputBox({placeholder, img, value, setValue}) {
   return (
     <View style={styles.container}>
       <View
@@ -17,7 +17,9 @@ function InputBox({placeholder, img}) {
       <TextInput
         style = {styles.input}
         placeholder={placeholder}
-        placeholderTextColor="#C2B8B8" 
+        placeholderTextColor="#C2B8B8"
+        value={value}
+        onChangeText={setValue}
       />
     </View>
   );
