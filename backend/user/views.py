@@ -1,5 +1,6 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from rest_framework import status
 
 from .models import User
 from .serializers import UserSerializer, UserAuthenticationSerializer
@@ -14,13 +15,15 @@ def get_user(request):
 
 @api_view(['POST'])
 def verify_user(request):
+    print(request.data)
     serializer = UserAuthenticationSerializer(data=request.data)
     if serializer.is_valid():
-        print(serializer.data)
         name = serializer.data['name']
         password = serializer.data['password']
         auth = User.objects.filter(name=name, password=password)
         if auth:
-            return Response(request.data)
+            return Response({"validated": True})
         else:
-            return Response("invalid")
+            return Response({"validated": False})
+    else:
+        return Response("invalid data")

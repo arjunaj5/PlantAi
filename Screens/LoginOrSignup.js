@@ -11,22 +11,17 @@ const username = require('../assets/images/login/username.png')
 const passwordimg = require('../assets/images/login/password.png')
 const arrow = require('../assets/images/login/arrow.png')
 
-const verifyUser = (userName, password) => {
-  const data = {userName, password}
-  console.log("UserName:" + userName)
-  fetch('http://localhost:8000/user/check/', {
+const verifyUser = async (userName, password) => {
+  const data = {name:userName, password}
+  const response = await fetch('http://127.0.0.1:8000/user/check/', {
     method: 'POST',
    
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify(data) // body data type must match "Content-Type" header
-  }).then((response) => {
-    console.log(response)
-    }).catch((error) => {
-      console.log(error)
-    })
-
+  })
+  return await response.json();
 }
 
 function LoginOrSignup( { navigation }) {
@@ -50,7 +45,10 @@ function LoginOrSignup( { navigation }) {
           <Button style={styles.button} color = "#3BA776" mode="contained" 
             onPress={() => {
               if(status === 'login')
-              verifyUser(userName, password)
+              verifyUser(userName, password).then((res) => {
+                if(res.validated)
+                navigation.navigate('Home')
+              })
             }}
           >
           <Image
