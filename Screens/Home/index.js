@@ -6,20 +6,23 @@ import SearchBar from '../../Components/Home/SearchBar';
 import Weather from '../../Components/Home/Weather';
 import Header from '../../Components/Header';
 import styles from './styles'
+import DefaultView from '../../Layouts/DefaultView';
 
 const search = require('../../assets/images/Home/search.png')
 
 const Home = () => {
 
   return (
-    <View style={styles.container}>
-      <SearchBar placeholder={'Search for Plants'} img={search} />
-      <Weather />
-      <News />
-      <Button style={styles.button} color = "#3BA776" mode="contained" onPress={() => console.log('Pressed')} dark={true}>
-        DISEASE DETECTION
-      </Button>
-    </View>
+    <DefaultView>
+      <View style={styles.container}>
+        <SearchBar placeholder={'Search for Plants'} img={search} />
+        <Weather />
+        <News />
+        <Button style={styles.button} color = "#3BA776" mode="contained" onPress={() => console.log('Pressed')} dark={true}>
+          DISEASE DETECTION
+        </Button>
+      </View>
+    </DefaultView>
   )
 }
 

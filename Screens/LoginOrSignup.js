@@ -4,32 +4,41 @@ import Header from '../Components/LoginOrSignup/Header'
 import InputBox from '../Components/LoginOrSignup/InputBox';
 
 import { Button } from 'react-native-paper';
+import DefaultView from '../Layouts/DefaultView';
 
 const email = require('../assets/images/login/email.png')
 const username = require('../assets/images/login/username.png')
 const password = require('../assets/images/login/password.png')
 const arrow = require('../assets/images/login/arrow.png')
 
-function LoginOrSignup() {
+function LoginOrSignup( { navigation }) {
 
   const [status, setStatus] = useState('login')
-  return <View style = {styles.container}>
-    <Header status = {status} setStatus = {setStatus}/>
+  return (
+    <DefaultView hideHeader>
+      <View style = {styles.container}>
+        <Header status = {status} setStatus = {setStatus}/>
 
-    <View style={styles.form}>
-      <InputBox placeholder={'User name'} img = {username} />
-      {status !== 'login' && 
-      <InputBox placeholder={'Email Id'} img = {email} /> }
-      <InputBox placeholder={'Password'} img = {password} />
+        <View style={styles.form}>
+          <InputBox placeholder={'User name'} img = {username} />
+          {status !== 'login' && 
+          <InputBox placeholder={'Email Id'} img = {email} /> }
+          <InputBox placeholder={'Password'} img = {password} />
 
-      <Button style={styles.button} color = "#3BA776" mode="contained" onPress={() => console.log('Pressed')}>
-      <Image
-        source={arrow}
-        style={styles.arrow}
-        />
-      </Button>
-    </View>
-  </View>;
+          <Button style={styles.button} color = "#3BA776" mode="contained" 
+            onPress={() =>
+              navigation.navigate('Home', { name: 'Home' })
+            }
+          >
+          <Image
+            source={arrow}
+            style={styles.arrow}
+            />
+          </Button>
+        </View>
+      </View>
+    </DefaultView>
+  );
 }
 
 const styles = StyleSheet.create({
@@ -51,12 +60,14 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 20,
-    width: 100,
+    width: '35%',
+    maxWidth:300,
+    paddingVertical:5,
     borderRadius: 19,
   },
   arrow: {
     width:35,
-    height:10,
+    height:15,
   }
 });
 
