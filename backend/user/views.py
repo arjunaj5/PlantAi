@@ -21,6 +21,7 @@ def verify_user(request):
         name = serializer.data['name']
         password = serializer.data['password']
         auth = User.objects.filter(name=name, password=password)
+        print(type(auth))
         if auth:
             return Response({"validated": True})
         else:

@@ -42,7 +42,7 @@ function LoginOrSignup( { navigation }) {
           <InputBox placeholder={'Email Id'} img = {email} value = {emailId} setValue = {setEmailId} /> }
           <InputBox placeholder={'Password'} img = {passwordimg} value = {password} setValue = {setPassword} />
 
-          <Button style={styles.button} color = "#3BA776" mode="contained" 
+          <Button style={styles.button} color = "#3BA776" mode="contained" contentStyle={styles.arrow}
             onPress={() => {
               // if(status === 'login')
               // verifyUser(userName, password).then((res) => {
@@ -53,7 +53,6 @@ function LoginOrSignup( { navigation }) {
           >
           <Image
             source={arrow}
-            style={styles.arrow}
             />
           </Button>
         </View>
@@ -80,16 +79,14 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   button: {
-    width: '50%',
-    height: 40,
     marginTop: 20,
     borderRadius: 19,
     alignItems: 'center',
     justifyContent: 'center'
   },
   arrow: {
-    width: 20,
-    height: 10
+    width: 100,
+    height: 40
   }
 });
 
