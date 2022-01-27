@@ -44,17 +44,16 @@ function LoginOrSignup( { navigation }) {
 
           <Button style={styles.button} color = "#3BA776" mode="contained" 
             onPress={() => {
-              if(status === 'login')
-              verifyUser(userName, password).then((res) => {
-                if(res.validated)
-                navigation.navigate('Home')
-              })
+              // if(status === 'login')
+              // verifyUser(userName, password).then((res) => {
+              //   if(res.validated)
+                // navigation.navigate('Home')
+              // })
             }}
           >
           <Image
             source={arrow}
             style={styles.arrow}
-            resizeMode='contain'
             />
           </Button>
         </View>
@@ -81,12 +80,16 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   button: {
-    marginTop: 20,
-    height: 45,
     width: '50%',
+    height: 40,
+    marginTop: 20,
     borderRadius: 19,
+    alignItems: 'center',
+    justifyContent: 'center'
   },
   arrow: {
+    width: 20,
+    height: 10
   }
 });
 
