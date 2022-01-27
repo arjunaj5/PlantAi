@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Text, StyleSheet, View, Image } from 'react-native';
 import Header from '../Components/LoginOrSignup/Header'
 import InputBox from '../Components/LoginOrSignup/InputBox';
@@ -11,7 +11,7 @@ const username = require('../assets/images/login/username.png')
 const passwordimg = require('../assets/images/login/password.png')
 const arrow = require('../assets/images/login/arrow.png')
 
-const verifyUser = async (userName, password) => {
+const checkCreds = async (userName, password) => {
   const data = {name:userName, password}
   const response = await fetch('http://127.0.0.1:8000/user/check/', {
     method: 'POST',
@@ -26,10 +26,34 @@ const verifyUser = async (userName, password) => {
 
 function LoginOrSignup( { navigation }) {
 
+  const verifyUser = (userName, password) => {
+    const result = checkCreds(userName, password)
+    result.then( (res) => {
+      const { validated, userExists } = res
+      if( validated )
+      navigation.navigate('Home') && setWrongPassword(false)
+      else if(userExists)
+        setWrongPassword(true)
+    })
+  }
+
   const [status, setStatus] = useState('login')
   const [userName, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [emailId, setEmailId] = useState('')
+  const [userNameError, setUserNameError] = useState(null)
+  const [passwordError, setPasswordError] = useState(null)
+  const [wrongPassword, setWrongPassword] = useState(false)
+
+  useEffect(() => {
+    setWrongPassword(false)
+    
+    if(userName !=="")
+    setUserNameError(false)
+
+    if(password !=="")
+    setPasswordError(false)
+  }, [userName, password])
 
   return (
     <DefaultView hideHeader>
@@ -38,17 +62,23 @@ function LoginOrSignup( { navigation }) {
 
         <View style={styles.form}>
           <InputBox placeholder={'User name'} img = {username} value = {userName} setValue = {setUsername} />
+          <Text>{ userNameError && 'Username required'}</Text>
           {status !== 'login' && 
           <InputBox placeholder={'Email Id'} img = {email} value = {emailId} setValue = {setEmailId} /> }
           <InputBox placeholder={'Password'} img = {passwordimg} value = {password} setValue = {setPassword} />
+          <Text>{ passwordError && 'Password required' ||
+                  wrongPassword && 'Incorrect password'
+          }</Text>
 
           <Button style={styles.button} color = "#3BA776" mode="contained" contentStyle={styles.arrow}
             onPress={() => {
-              // if(status === 'login')
-              // verifyUser(userName, password).then((res) => {
-              //   if(res.validated)
-                // navigation.navigate('Home')
-              // })
+              if(userName === "")
+              setUserNameError(true)
+              if (password === "")
+              setPasswordError(true)
+
+              if(userNameError == false && passwordError == false)
+              verifyUser(userName, password)
             }}
           >
           <Image

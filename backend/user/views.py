@@ -20,11 +20,16 @@ def verify_user(request):
     if serializer.is_valid():
         name = serializer.data['name']
         password = serializer.data['password']
+
+        response = {"validated": False, "userExists": False}
+        if not User.objects.filter(name=name):
+            return Response(response)
+
         auth = User.objects.filter(name=name, password=password)
-        print(type(auth))
         if auth:
             return Response({"validated": True})
         else:
-            return Response({"validated": False})
+            response["userExists"] = True
+            return Response(response)
     else:
         return Response("invalid data")
