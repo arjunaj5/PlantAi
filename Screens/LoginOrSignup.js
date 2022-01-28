@@ -40,8 +40,6 @@ const styles = StyleSheet.create({
     elevation: 5,
     width: '90%',
     },
-  form: {
-    paddingVertical: 25
   },
   button: {
     width: 90,
