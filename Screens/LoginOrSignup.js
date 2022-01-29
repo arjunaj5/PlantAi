@@ -12,8 +12,8 @@ const passwordimg = require('../assets/images/login/password.png')
 const arrow = require('../assets/images/login/arrow.png')
 
 const checkCreds = async (userName, password) => {
-  const data = {name:userName, password}
-  const response = await fetch('http://127.0.0.1:8000/user/check/', {
+  const data = {username:userName, password}
+  const response = await fetch('https://plantai-1.herokuapp.com/api-token-auth/', {
     method: 'POST',
    
     headers: {
@@ -28,12 +28,16 @@ function LoginOrSignup( { navigation }) {
 
   const verifyUser = (userName, password) => {
     const result = checkCreds(userName, password)
-    result.then( (res) => {
-      const { validated, userExists } = res
-      if( validated )
-      navigation.navigate('Home') && setWrongPassword(false)
-      else if(userExists)
-        setWrongPassword(true)
+
+    result.then( (response) => {
+      console.log(response)
+      if(response.token) {
+        navigation.navigate('Home') && setWrongPassword(false)
+      }
+      else {
+        setWrongPassword(true)  // issue -- even if user does not exist, this statement is executed
+      }
+      
     })
   }
 
