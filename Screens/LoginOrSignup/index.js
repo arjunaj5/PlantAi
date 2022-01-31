@@ -1,3 +1,4 @@
+import React from 'react';
 import { Text, StyleSheet, View, Image } from 'react-native';
 import Header from '../../Components/LoginOrSignup/Header'
 import InputBox from '../../Components/LoginOrSignup/InputBox';

@@ -9,6 +9,7 @@ const Stack = createNativeStackNavigator();
 // Components
 import LoginOrSignup from './Screens/LoginOrSignup';
 import Home from './Screens/Home';
+import DiseaseDetection from './Screens/DiseaseDetection';
 
 export default function App() {
   return (
@@ -17,16 +18,20 @@ export default function App() {
         screenOptions={{
           headerShown: false
         }}
-      >
-        <Stack.Screen
-          name="LoginSignup"
-          component={LoginOrSignup}
-        />
-        
-        <Stack.Screen
-          name="Home"
-          component={Home}
-        />
+      >   
+          <Stack.Screen
+            name="Home"
+            component={Home}
+          />
+          <Stack.Screen
+            name = "Disease"
+            component = {DiseaseDetection}
+          />
+          <Stack.Screen
+            name="LoginSignup"
+            component={LoginOrSignup}
+          />
+          
       </Stack.Navigator>
     </NavigationContainer>
   );
