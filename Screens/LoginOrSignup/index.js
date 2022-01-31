@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from 'react';
 import { Text, StyleSheet, View, Image } from 'react-native';
 import Header from '../../Components/LoginOrSignup/Header'
 import InputBox from '../../Components/LoginOrSignup/InputBox';
-import { API_ROOT } from '../../apiroot';
 
 import { Button } from 'react-native-paper';
 import DefaultView from '../../Layouts/DefaultView';
@@ -13,7 +11,7 @@ const passwordimg = require('../../assets/images/login/password.png')
 const arrow = require('../../assets/images/login/arrow.png')
 
 
-// Login hook
+// Login and signup hook
 import useLoginOrSignup from './CustomHooks/useLoginOrSignup';
 
 function LoginOrSignup( { navigation }) {
@@ -43,12 +41,12 @@ function LoginOrSignup( { navigation }) {
 
         <View style={styles.form}>
           <InputBox placeholder={'User name'} img = {username} value = {userName} setValue = {setUserName} />
-          <Text> { userNameError } </Text>
+            <Text> { userNameError } </Text>
           {status !== 'login' && 
           <InputBox placeholder={'Email Id'} img = {email} value = {emailId} setValue = {setEmailId} /> }
-          { status !== 'login' && <Text> { emailIdError } </Text>  }
+            { status !== 'login' && <Text> { emailIdError } </Text>  }
           <InputBox placeholder={'Password'} img = {passwordimg} value = {password} setValue = {setPassword} />
-          <Text> { passwordError } </Text>
+            <Text> { passwordError } </Text>
           <Button style={styles.button} color = "#3BA776" mode="contained" contentStyle={styles.arrow}
             onPress={() => {
               if(status == 'login')
