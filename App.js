@@ -10,15 +10,21 @@ const Stack = createNativeStackNavigator();
 import LoginOrSignup from './Screens/LoginOrSignup';
 import Home from './Screens/Home';
 import DiseaseDetection from './Screens/DiseaseDetection';
+import NewsPage from './Screens/NewsPage';
 
 export default function App() {
   return (
+    
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
           headerShown: false
         }}
       >   
+          <Stack.Screen
+            name="NewsPage"
+            component={NewsPage}
+          />
           <Stack.Screen
             name="Home"
             component={Home}
