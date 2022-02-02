@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
@@ -10,6 +10,7 @@ const Stack = createNativeStackNavigator();
 import LoginOrSignup from './Screens/LoginOrSignup';
 import Home from './Screens/Home';
 import DiseaseDetection from './Screens/DiseaseDetection';
+import SearchPage from './Screens/SearchPage';
 
 export default function App() {
   return (
@@ -19,6 +20,10 @@ export default function App() {
           headerShown: false
         }}
       >   
+          <Stack.Screen
+            name="SearchPage"
+            component={SearchPage}
+          />
           <Stack.Screen
             name="Home"
             component={Home}
