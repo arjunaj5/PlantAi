@@ -1,5 +1,5 @@
 import { StatusBar } from 'expo-status-bar';
-import React, { useEffect,useState} from 'react';
+import React from 'react';
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -11,12 +11,14 @@ import LoginOrSignup from './Screens/LoginOrSignup';
 import Home from './Screens/Home';
 import HealthyPlantResult from './Screens/HealthyPlantResult';
 import DiseaseDetection from './Screens/DiseaseDetection';
+import NewsPage from './Screens/NewsPage';
+import PlantPage from './Screens/PlantPage';
+import ResultsPage from './Screens/ResultsPage';
 
 export default function App() {
  
   return (
    
-
     <NavigationContainer>
       <Stack.Navigator
         screenOptions={{
@@ -27,6 +29,19 @@ export default function App() {
             name='HealthyPlantResult'
             component={HealthyPlantResult}
           />
+          <Stack.Screen 
+          name="ResultsPage"
+          component={ResultsPage}
+          />
+          <Stack.Screen
+          name="PlantPage"
+          component={PlantPage}
+          />
+          <Stack.Screen
+            name="NewsPage"
+            component={NewsPage}
+          />
+
           <Stack.Screen
             name="Home"
             component={Home}
@@ -50,7 +65,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#D3FFD8',
-   
     alignItems: 'center',
     justifyContent: 'center',
   },
