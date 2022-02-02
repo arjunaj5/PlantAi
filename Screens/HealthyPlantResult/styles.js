@@ -15,26 +15,25 @@ const styles = StyleSheet.create({
         borderBottomLeftRadius:19
 
     },
-  Image: {
+  image: {
     width: '90%',
     height:200
     
   },
   
-    Text: {
+    text: {
         fontSize: 18,
         marginTop: 28,
         fontWeight:'bold',
-        alignSelf:"center"
+        alignSelf:"center",
       },
     
     
-  Button: {
-    width: 149,
-    height:40,
-     borderRadius: 22,
-    marginVertical: 9,
-    paddingVertical:2,
+  button: {
+    height: 45,
+    width: 175,
+    justifyContent: "center",
+    borderRadius: 22,
     alignSelf:"center"
     }
 })
