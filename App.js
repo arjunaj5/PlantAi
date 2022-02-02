@@ -11,6 +11,8 @@ import LoginOrSignup from './Screens/LoginOrSignup';
 import Home from './Screens/Home';
 import DiseaseDetection from './Screens/DiseaseDetection';
 import NewsPage from './Screens/NewsPage';
+import PlantPage from './Screens/PlantPage';
+import ResultsPage from './Screens/ResultsPage';
 
 export default function App() {
   return (
@@ -21,6 +23,14 @@ export default function App() {
           headerShown: false
         }}
       >   
+          <Stack.Screen 
+          name="ResultsPage"
+          component={ResultsPage}
+          />
+          <Stack.Screen
+          name="PlantPage"
+          component={PlantPage}
+          />
           <Stack.Screen
             name="NewsPage"
             component={NewsPage}
