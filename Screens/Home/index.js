@@ -10,7 +10,7 @@ import DefaultView from '../../Layouts/DefaultView';
 
 const search = require('../../assets/images/Home/search.png')
 
-const Home = () => {
+const Home = ({ navigation }) => {
 
   return (
     <DefaultView>
@@ -18,7 +18,7 @@ const Home = () => {
         <SearchBar placeholder={'Search for Plants'} img={search} />
         <Weather />
         <News />
-        <Button style={styles.button} color = "#3BA776" mode="contained" onPress={() => console.log('Pressed')} dark={true}>
+        <Button style={styles.button} color = "#3BA776" mode="contained" onPress={() => navigation.navigate('Disease')} dark={true}>
           DISEASE DETECTION
         </Button>
       </View>

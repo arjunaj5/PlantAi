@@ -9,12 +9,8 @@ const Stack = createNativeStackNavigator();
 //Components
 import LoginOrSignup from './Screens/LoginOrSignup';
 import Home from './Screens/Home';
-import Result from './Screens/PlantResult';
-
-
-
-
-
+import HealthyPlantResult from './Screens/HealthyPlantResult';
+import DiseaseDetection from './Screens/DiseaseDetection';
 
 export default function App() {
  
@@ -26,21 +22,24 @@ export default function App() {
         screenOptions={{
           headerShown: false
         }}
-      >
-         <Stack.Screen
-      name="PlantResult"
-      component={Result}
-      />
-
-        <Stack.Screen
-          name="LoginSignup"
-          component={LoginOrSignup}
-        />
-        
-        <Stack.Screen
-          name="Home"
-          component={Home}
-        />
+      >   
+          <Stack.Screen
+            name='HealthyPlantResult'
+            component={HealthyPlantResult}
+          />
+          <Stack.Screen
+            name="Home"
+            component={Home}
+          />
+          <Stack.Screen
+            name = "Disease"
+            component = {DiseaseDetection}
+          />
+          <Stack.Screen
+            name="LoginSignup"
+            component={LoginOrSignup}
+          />
+          
       </Stack.Navigator>
     </NavigationContainer>
    

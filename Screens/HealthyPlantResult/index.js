@@ -8,7 +8,7 @@ import DefaultView from '../../Layouts/DefaultView';
 const result=require('../../assets/images/PlantResult.png')
 
 
-const Result = () => {
+const HealthyPlantResult = () => {
 
     return (
       <DefaultView>
@@ -31,5 +31,5 @@ const Result = () => {
   }
   
   
-  export default Result;
+  export default HealthyPlantResult;
   
