@@ -26,6 +26,10 @@ export default function App() {
         }}
       >   
           <Stack.Screen
+            name = "Disease"
+            component = {DiseaseDetection}
+          />
+          <Stack.Screen
             name='HealthyPlantResult'
             component={HealthyPlantResult}
           />
@@ -46,10 +50,7 @@ export default function App() {
             name="Home"
             component={Home}
           />
-          <Stack.Screen
-            name = "Disease"
-            component = {DiseaseDetection}
-          />
+
           <Stack.Screen
             name="LoginSignup"
             component={LoginOrSignup}
