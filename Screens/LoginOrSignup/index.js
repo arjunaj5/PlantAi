@@ -48,18 +48,16 @@ function LoginOrSignup( { navigation }) {
             { status !== 'login' && <Text> { emailIdError } </Text>  }
           <InputBox placeholder={'Password'} img = {passwordimg} value = {password} setValue = {setPassword} />
             <Text> { passwordError } </Text>
-          <Button style={styles.button} color = "#3BA776" mode="contained" contentStyle={styles.arrow}
+
+          <Button style={styles.button} color = "#3BA776" mode="contained" icon={arrow} dark={true} contentStyle={styles.arrow} 
+          labelStyle={{fontSize: 35,}}
             onPress={() => {
               if(status == 'login')
               handleLogin();
               if(status == 'signup')
               handleSignup();
             }}
-          >
-          <Image
-            source={arrow}
-            />
-          </Button>
+          />
         </View>
       </View>
     </DefaultView>
@@ -87,12 +85,14 @@ const styles = StyleSheet.create({
     marginTop: 20,
     borderRadius: 19,
     alignItems: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
   },
   arrow: {
-    width: 100,
-    height: 40
+    width: 150,
+    height: 40,
+    fontSize: 20,
   }
+
 });
 
 export default LoginOrSignup;

@@ -7,6 +7,15 @@ const globalStyles = StyleSheet.create( {
     shadowOpacity: 0.8,
     shadowRadius: 5,  
     elevation: 5,
+  },
+  
+  button: {
+    borderTopLeftRadius: 100,
+    borderRadius: 5,
+    width: 120
+  },
+  buttonText: {
+    fontWeight: "bold"
   }
 } );
 
