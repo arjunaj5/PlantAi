@@ -11,7 +11,7 @@ const UserDashboard = () => {
 
   return (
     <DefaultView>
-        <DashboardMenu/>
+          <DashboardMenu setMenu={setMenu} menu={menu}/>
     </DefaultView>
   )
 }
