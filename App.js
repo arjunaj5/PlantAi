@@ -16,6 +16,8 @@ import PlantPage from './Screens/PlantPage';
 import ResultsPage from './Screens/ResultsPage';
 import SearchPage from './Screens/SearchPage';
 
+import UserDashboard from './Screens/UserDashboard'
+
 export default function App() {
  
   return (
@@ -26,10 +28,15 @@ export default function App() {
           headerShown: false
         }}
       >   
+          {/* <Stack.Screen
+            name='UserDashboard'
+            component={UserDashboard}
+            />
+
           <Stack.Screen
             name='SearchPage'
             component={SearchPage}
-          />
+          /> */}
           <Stack.Screen
             name='HealthyPlantResult'
             component={HealthyPlantResult}
