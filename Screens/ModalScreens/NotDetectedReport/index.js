@@ -3,8 +3,12 @@ import { View , Text, TextInput} from "react-native";
 import { Button } from "react-native-paper";
 
 
-import styles from './styles'
+import styles from './styles';
 import globalStyles from "../../../globalStyles";
+
+
+
+
 
 const NotDetectedReport = () => {
 
@@ -20,12 +24,25 @@ const NotDetectedReport = () => {
           maxLength={100}
         />
       </View>
+
+      <View style={styles.container}>
+        <View style={[styles.boxOne, globalStyles.boxShadow]} >
+         
+        </View>
+
+        <View style={[styles.boxTwo, globalStyles.boxShadow]}>
+          {/* <Image source={add} style={styles.image} />
+          
+            */}
+        </View>
+      </View>
+
       <Button
         mode="contained"
         color="#3BA776"
         onPress={() => console.log('Pressed')}
         dark={true}
-        style={globalStyles.button}
+        style={[globalStyles.button,{alignSelf:"flex-end"}]}
       >
         <Text style={globalStyles.buttonText}> Report </Text>
       </Button>
