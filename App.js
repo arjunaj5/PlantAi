@@ -29,7 +29,7 @@ export default function App() {
           headerShown: false
         }}
       >   
-          <Stack.Screen
+          {/* <Stack.Screen
             name="LoginSignup"
             component={LoginOrSignup}
           />
@@ -46,7 +46,7 @@ export default function App() {
           <Stack.Screen
             name='SearchPage'
             component={SearchPage}
-          />
+          /> */}
           <Stack.Screen
             name = "Disease"
             component = {DiseaseDetection}

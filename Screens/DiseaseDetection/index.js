@@ -89,8 +89,8 @@ const DiseaseDetection = ({ navigation }) => {
 
   return (
     <DefaultView navigation={navigation}>
-      
-      <ActivityIndicator  size="large" style={styles.activityIndicator} animating={detecting}/>
+      <ActivityIndicator  size="large"  animating={detecting} color="#3BA776" style={styles.activityIndicator} />
+
       <View pointerEvents={pointerEvents} style={styles.container}>
         <Pressable 
           style={[styles.imageContainer, globalStyles.boxShadow]}
@@ -99,7 +99,6 @@ const DiseaseDetection = ({ navigation }) => {
           <Image source={camera} style={styles.image} />
           <Text style={styles.text}> Open Camera </Text>
         </Pressable>
-
         <Pressable 
           style={[styles.imageContainer, globalStyles.boxShadow]}
           onPress={pickImage}
