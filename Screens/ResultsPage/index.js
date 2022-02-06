@@ -1,15 +1,21 @@
 import React from 'react';
-import { View, Image, Text } from 'react-native';
 import DefaultView from '../../Layouts/DefaultView';
 import DetailsPage from '../../Components/DetailsPage';
+import HealthyPlantResult from '../HealthyPlantResult';
 
 
 const ResultsPage = ({route, navigation}) => {
   const result = route.params
   console.log(result)
+  if(result.healthy)
+  {
+   return (
+     <HealthyPlantResult img={result.image} />
+   ) 
+  }
   return(
 
-    <DefaultView>
+    <DefaultView navigation={navigation}>
         
         <DetailsPage img={result.image} name ={result.name} description={result.description}/>
 

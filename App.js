@@ -15,6 +15,7 @@ import NewsPage from './Screens/NewsPage';
 import PlantPage from './Screens/PlantPage';
 import ResultsPage from './Screens/ResultsPage';
 import SearchPage from './Screens/SearchPage';
+import DefaultView from './Layouts/DefaultView';
 
 import UserDashboard from './Screens/UserDashboard'
 
@@ -62,8 +63,6 @@ export default function App() {
             name="NewsPage"
             component={NewsPage}
           />
-
-
 
           <Stack.Screen
             name="LoginSignup"

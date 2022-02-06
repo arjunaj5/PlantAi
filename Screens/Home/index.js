@@ -14,7 +14,7 @@ const Home = ({ navigation }) => {
   const [query, setQuery] = useState('')
 
   return (
-    <DefaultView>
+    <DefaultView navigation={navigation} >
       <View style={styles.container}>
         <SearchBar img={search} navigation={navigation} query={query} setQuery={setQuery} />
         <Weather />

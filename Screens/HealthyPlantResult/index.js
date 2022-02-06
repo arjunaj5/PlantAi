@@ -15,7 +15,7 @@ import NotDetectedReport from '../ModalScreens/NotDetectedReport';
 const result=require('../../assets/images/PlantResult.png')
 
 
-const HealthyPlantResult = () => {
+const HealthyPlantResult = ({ img }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const hideModal = () => setModalVisible(false);
@@ -26,7 +26,8 @@ const HealthyPlantResult = () => {
       <View style={styles.container}>
         <View>
           <Image
-          source={result}
+          source={{uri: img}}
+          style={styles.image}
           />
           <Text style={styles.text}>Your Plant Is Healthy</Text>
         </View>

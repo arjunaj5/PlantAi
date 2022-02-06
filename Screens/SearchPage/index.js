@@ -47,7 +47,7 @@ const SearchPage = ({ navigation, route }) => {
 
 
     return (
-        <DefaultView>
+        <DefaultView navigation={navigation}>
             <View style={styles.searchview}>
                 <SearchBar img={search} query={query} setQuery={setQuery} onSearch={getPlants} />
             </View>

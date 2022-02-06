@@ -6,11 +6,11 @@ import DefaultView from "../../Layouts/DefaultView";
 
 import DashboardMenu from "../../Components/DashboardMenu";
 
-const UserDashboard = () => {
+const UserDashboard = ({navigation}) => {
   const [menu, setMenu] = useState('history')
 
   return (
-    <DefaultView>
+    <DefaultView navigation={navigation}>
           <DashboardMenu setMenu={setMenu} menu={menu}/>
     </DefaultView>
   )

@@ -9,7 +9,7 @@ const newsPic = require('../../assets/images/NewsPage/Newspic.png')
 const NewsPage = () => {
   return(
 
-    <DefaultView>
+    <DefaultView navigation={navigation} >
         
         <DetailsPage img={newsPic} heading={"News Topic"}/>
 

@@ -4,6 +4,7 @@ import React from "react";
 import DefaultView from "../../Layouts/DefaultView";
 import styles from "./styles";
 import * as ImagePicker from 'expo-image-picker';
+import { API_ROOT } from "../../apiroot";
 
 
 // Images
@@ -23,9 +24,8 @@ const detectDisease = async (result) => {
 
   let formData = new FormData();
   formData.append('photo', localUri );
-  console.log(formData)
 
-  const response =  await fetch('http://localhost:8000/detect-disease/', {
+  const response =  await fetch( API_ROOT + '/detect-disease/', {
     method: 'POST',
     body: formData,
     header: {
@@ -70,8 +70,6 @@ const DiseaseDetection = ({ navigation }) => {
 
     const result = await ImagePicker.launchCameraAsync();
 
-    // Explore the result
-    console.log(result);
 
     if (result.cancelled) {
       return;
@@ -85,7 +83,7 @@ const DiseaseDetection = ({ navigation }) => {
 
 
   return (
-    <DefaultView>
+    <DefaultView navigation={navigation}>
       
       <ActivityIndicator  size="large" animating={detecting}/>
       <View style={styles.container}>
