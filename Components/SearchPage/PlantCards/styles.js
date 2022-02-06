@@ -11,6 +11,14 @@ const styles = StyleSheet.create ({
         justifyContent: "flex-start",
         padding: 15
     },
+    imageView: {
+      width: '30%',
+    },
+    image: {
+      width:'100%',
+      height: '100%',
+      borderRadius: 10
+    },
     cardtext: {
         padding: 16,
         width: '70%'

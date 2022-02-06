@@ -1,23 +1,35 @@
-import React from 'react';
-import { View, StyleSheet, TextInput, Image } from "react-native";
+import React, { useState } from 'react';
+import { View, StyleSheet, TextInput, Image, Pressable } from "react-native";
 
 
 
-function SearchBar({placeholder, img}) {
+function SearchBar({placeholder, img, navigation, query, setQuery, onSearch}) {
+
+  const handlePress = () => {
+    navigation && navigation.navigate('SearchPage', {query})
+    onSearch && onSearch()
+  }
+
   return (
     <View style={styles.container}>
       <TextInput
         style = {styles.input}
         placeholder={placeholder}
-        placeholderTextColor="#C2B8B8" 
+        placeholderTextColor="#C2B8B8"
+        value={query}
+        onChangeText={setQuery}
       />
       <View
         style={styles.logo}
       >
-        <Image
-        source={img}
-        style={styles.logoImg}
-        />
+        <Pressable
+        onPress={handlePress}
+        >
+          <Image
+          source={img}
+          style={styles.logoImg}
+          />
+        </Pressable>
       </View>
     </View>
   );

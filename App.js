@@ -29,6 +29,11 @@ export default function App() {
         }}
       >   
           <Stack.Screen
+            name="Home"
+            component={Home}
+          />
+          
+          <Stack.Screen
             name='UserDashboard'
             component={UserDashboard}
             />
@@ -58,10 +63,7 @@ export default function App() {
             component={NewsPage}
           />
 
-          <Stack.Screen
-            name="Home"
-            component={Home}
-          />
+
 
           <Stack.Screen
             name="LoginSignup"

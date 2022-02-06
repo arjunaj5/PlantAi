@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { View } from 'react-native';
 import { Button } from 'react-native-paper';
 import News from '../../Components/Home/News';
@@ -11,11 +11,12 @@ import DefaultView from '../../Layouts/DefaultView';
 const search = require('../../assets/images/Home/search.png')
 
 const Home = ({ navigation }) => {
+  const [query, setQuery] = useState('')
 
   return (
     <DefaultView>
       <View style={styles.container}>
-        <SearchBar placeholder={'Search for Plants'} img={search} />
+        <SearchBar placeholder={'Search for Plants'} img={search} navigation={navigation} query={query} setQuery={setQuery} />
         <Weather />
         <News />
         <Button style={styles.button} color = "#3BA776" mode="contained" onPress={() => navigation.navigate('Disease')} dark={true}>

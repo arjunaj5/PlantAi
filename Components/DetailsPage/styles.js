@@ -14,6 +14,7 @@ const styles = StyleSheet.create({
     newsPic: {
         width: 289,
         height: 186,
+        borderRadius: 19
       },
       imageContainer: {
         paddingTop: 30,

@@ -3,14 +3,15 @@ import { View, Image, Text } from 'react-native';
 import DefaultView from '../../Layouts/DefaultView';
 import DetailsPage from '../../Components/DetailsPage';
 
-const newsPic = require('../../assets/images/ResultsPage/pic.png')
 
-const ResultsPage = () => {
+const ResultsPage = ({route, navigation}) => {
+  const result = route.params
+  console.log(result)
   return(
 
     <DefaultView>
         
-        <DetailsPage img={newsPic} heading={"Name of Disease"}/>
+        <DetailsPage img={result.image} name ={result.name} description={result.description}/>
 
 
     </DefaultView>

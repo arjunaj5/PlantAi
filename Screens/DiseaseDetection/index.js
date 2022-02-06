@@ -1,4 +1,4 @@
-import { Image, Text, View, Pressable } from "react-native";
+import { Image, Text, View, Pressable, ActivityIndicator } from "react-native";
 import { useState } from "react";
 import React from "react";
 import DefaultView from "../../Layouts/DefaultView";
@@ -13,31 +13,32 @@ const gallery = require('../../assets/images/disease-detection/gallery.png')
 // Global style
 import globalStyles from "../../globalStyles";
 
-const detectDisease = async (uri) => {
+const detectDisease = async (result) => {
 
-  let filename = uri.split('/').pop();
+  let localUri = result.uri;
+  let filename = localUri.split('/').pop();
 
-  // Infer the type of the image
   let match = /\.(\w+)$/.exec(filename);
   let type = match ? `image/${match[1]}` : `image`;
 
-  // Upload the image using the fetch and FormData APIs
   let formData = new FormData();
-  // Assume "photo" is the name of the form field the server expects
-  formData.append('photo', { uri: uri, name: filename, type });
+  formData.append('photo', localUri );
+  console.log(formData)
 
-  return await fetch(YOUR_SERVER_URL, {
+  const response =  await fetch('http://localhost:8000/detect-disease/', {
     method: 'POST',
     body: formData,
-    headers: {
+    header: {
       'content-type': 'multipart/form-data',
     },
-  });
+  })
+
+  return await response.json()
 }
 
-const DiseaseDetection = () => {
+const DiseaseDetection = ({ navigation }) => {
+  const [detecting, setDetecting] = useState(false)
 
-  const [image, setImage] = useState(null);
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
     let result = await ImagePicker.launchImageLibraryAsync({
@@ -47,11 +48,15 @@ const DiseaseDetection = () => {
       quality: 1,
     });
 
-    console.log(result);
-
-    if (!result.cancelled) {
-      setImage(result.uri);
+    if (result.cancelled) {
+      return
     }
+    setDetecting(true)
+    const detectionResult = await detectDisease(result)
+    setDetecting(false)
+    console.log(detectionResult)
+    navigation.navigate('ResultsPage', { ... detectionResult, image: result.uri})
+
   };
 
   const openCamera = async () => {
@@ -68,15 +73,21 @@ const DiseaseDetection = () => {
     // Explore the result
     console.log(result);
 
-    if (!result.cancelled) {
-      setImage(result.uri);
-      console.log(result.uri);
+    if (result.cancelled) {
+      return;
     }
+    setDetecting(true)
+    const detectionResult = await detectDisease(result)
+    setDetecting(false)
+    console.log(detectionResult)
+    navigation.navigate('ResultsPage',{ ... detectionResult, image: result.uri})
   }
 
 
   return (
     <DefaultView>
+      
+      <ActivityIndicator  size="large" animating={detecting}/>
       <View style={styles.container}>
         <Pressable 
           style={[styles.imageContainer, globalStyles.boxShadow]}

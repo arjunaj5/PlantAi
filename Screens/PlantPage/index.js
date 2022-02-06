@@ -1,17 +1,17 @@
 import React from 'react';
-import { View, Image, Text } from 'react-native';
 import styles from './styles';
 import DefaultView from '../../Layouts/DefaultView';
 import DetailsPage from '../../Components/DetailsPage';
 
-const newsPic = require('../../assets/images/PlantPage/Pic.png')
 
-const PlantPage = () => {
+const PlantPage = ({route}) => {
+  
+  const {image_url, name, description} = route.params
   return(
 
     <DefaultView>
         
-        <DetailsPage img={newsPic} heading={"Plant Name"}/>
+        <DetailsPage img={image_url} name={name} description={description}/>
 
 
     </DefaultView>

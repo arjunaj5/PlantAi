@@ -4,18 +4,18 @@ import styles from './styles';
 
 
 
-const DetailsPage = ({img, heading}) => {
+const DetailsPage = ({img, name, description}) => {
   return (
 
     <View style={styles.container}>
             <View style={styles.imageContainer}>
-                <Image source={img} style={styles.newsPic}/>
+                <Image source={{uri: img}} style={styles.newsPic}/>
             </View>
 
             <View style={styles.text}>
 
-                <Text style={styles.heading}>{heading}</Text>
-                <Text style={styles.para}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec a, ultrices adipiscing magna venenatis. Purus amet, in est orci. Vitae cursus volutpat nec arcu nibh. Ante ullamcorper arcu, felis odio arcu.</Text> 
+                <Text style={styles.heading}> { name } </Text>
+                <Text style={styles.para}> { description } </Text> 
 
             </View>
         </View>
