@@ -6,7 +6,7 @@ import DetailsPage from '../../Components/DetailsPage';
 
 const newsPic = require('../../assets/images/NewsPage/Newspic.png')
 
-const NewsPage = () => {
+const NewsPage = ({ navigation }) => {
   return(
 
     <DefaultView navigation={navigation} >

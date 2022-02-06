@@ -30,6 +30,10 @@ export default function App() {
         }}
       >   
           <Stack.Screen
+            name="LoginSignup"
+            component={LoginOrSignup}
+          />
+          <Stack.Screen
             name="Home"
             component={Home}
           />
@@ -64,10 +68,7 @@ export default function App() {
             component={NewsPage}
           />
 
-          <Stack.Screen
-            name="LoginSignup"
-            component={LoginOrSignup}
-          />
+
           
       </Stack.Navigator>
     </NavigationContainer>

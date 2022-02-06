@@ -38,6 +38,7 @@ const detectDisease = async (result) => {
 
 const DiseaseDetection = ({ navigation }) => {
   const [detecting, setDetecting] = useState(false)
+  const [pointerEvents, setPointerEvents] = useState('auto')
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -52,8 +53,10 @@ const DiseaseDetection = ({ navigation }) => {
       return
     }
     setDetecting(true)
+    setPointerEvents('none')
     const detectionResult = await detectDisease(result)
     setDetecting(false)
+    setPointerEvents('auto')
     console.log(detectionResult)
     navigation.navigate('ResultsPage', { ... detectionResult, image: result.uri})
 
@@ -75,8 +78,10 @@ const DiseaseDetection = ({ navigation }) => {
       return;
     }
     setDetecting(true)
+    setPointerEvents('none')
     const detectionResult = await detectDisease(result)
     setDetecting(false)
+    setPointerEvents('auto')
     console.log(detectionResult)
     navigation.navigate('ResultsPage',{ ... detectionResult, image: result.uri})
   }
@@ -85,8 +90,8 @@ const DiseaseDetection = ({ navigation }) => {
   return (
     <DefaultView navigation={navigation}>
       
-      <ActivityIndicator  size="large" animating={detecting}/>
-      <View style={styles.container}>
+      <ActivityIndicator  size="large" style={styles.activityIndicator} animating={detecting}/>
+      <View pointerEvents={pointerEvents} style={styles.container}>
         <Pressable 
           style={[styles.imageContainer, globalStyles.boxShadow]}
           onPress={openCamera}
