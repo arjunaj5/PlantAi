@@ -16,7 +16,7 @@ const Home = ({ navigation }) => {
   return (
     <DefaultView>
       <View style={styles.container}>
-        <SearchBar placeholder={'Search for Plants'} img={search} navigation={navigation} query={query} setQuery={setQuery} />
+        <SearchBar img={search} navigation={navigation} query={query} setQuery={setQuery} />
         <Weather />
         <News />
         <Button style={styles.button} color = "#3BA776" mode="contained" onPress={() => navigation.navigate('Disease')} dark={true}>

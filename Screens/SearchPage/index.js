@@ -32,7 +32,8 @@ const SearchPage = ({ navigation, route }) => {
   const [loading, setLoading] = useState(false)
 
   useEffect( () => {
-    getPlants()
+    if(query !== '')
+      getPlants()
   }, [])
 
   const getPlants = () => {

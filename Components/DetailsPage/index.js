@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text } from 'react-native';
+import { View, Image, Text, ScrollView } from 'react-native';
 import styles from './styles';
 
 
@@ -7,7 +7,7 @@ import styles from './styles';
 const DetailsPage = ({img, name, description}) => {
   return (
 
-    <View style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={styles.contentContainer}>
             <View style={styles.imageContainer}>
                 <Image source={{uri: img}} style={styles.newsPic}/>
             </View>
@@ -18,7 +18,7 @@ const DetailsPage = ({img, name, description}) => {
                 <Text style={styles.para}> { description } </Text> 
 
             </View>
-        </View>
+        </ScrollView>
   );
 }
 
