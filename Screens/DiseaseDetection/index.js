@@ -4,6 +4,7 @@ import React from "react";
 import DefaultView from "../../Layouts/DefaultView";
 import styles from "./styles";
 import * as ImagePicker from 'expo-image-picker';
+import * as FileSystem from 'expo-file-system';
 import { API_ROOT } from "../../apiroot";
 
 
@@ -21,9 +22,10 @@ const detectDisease = async (result) => {
 
   let match = /\.(\w+)$/.exec(filename);
   let type = match ? `image/${match[1]}` : `image`;
+  const base64 = await FileSystem.readAsStringAsync(result.uri, { encoding: 'base64' });
 
   let formData = new FormData();
-  formData.append('photo', localUri );
+  formData.append('photo', base64 );
 
   const response =  await fetch( API_ROOT + '/detect-disease/', {
     method: 'POST',
