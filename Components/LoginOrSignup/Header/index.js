@@ -12,7 +12,8 @@ const Header = ({status, setStatus}) => {
     },
     textPassive: {
       fontSize: 19,
-      fontWeight: "400"
+      fontWeight: "400",
+      color: '#000'
     }
   })
   return (
