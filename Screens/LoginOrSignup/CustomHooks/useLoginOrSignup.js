@@ -36,7 +36,7 @@ const useLoginOrSignup = (navigation) => {
     login(userName, password).then((result) => {
       console.log(result)
       if(result.token){
-        navigation.navigate('Home')
+        navigation.navigate('Home', {userDetails: result})
       }
       else {
         setPasswordError('invalid credentials')
@@ -61,7 +61,6 @@ const useLoginOrSignup = (navigation) => {
     }
 
     signup(userName, emailId, password).then( (response) => {
-      console.log(response)
       if(response.token) {
         handleLogin()
       }

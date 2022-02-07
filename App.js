@@ -29,15 +29,15 @@ export default function App() {
           headerShown: false
         }}
       >   
-          <Stack.Screen
-            name="LoginSignup"
-            component={LoginOrSignup}
-          />
+
           <Stack.Screen
             name="Home"
             component={Home}
           />
-          
+          <Stack.Screen
+            name="LoginSignup"
+            component={LoginOrSignup}
+          />
           <Stack.Screen
             name='UserDashboard'
             component={UserDashboard}

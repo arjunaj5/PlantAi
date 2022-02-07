@@ -37,6 +37,7 @@ function LoginOrSignup( { navigation }) {
 
   return (
     <DefaultView hideHeader>
+      <Text style={styles.primaryText} > You have to login or signup first</Text>
       <View style = {styles.container}>
         <Header status = {status} setStatus = {setStatus}/>
 
@@ -91,6 +92,11 @@ const styles = StyleSheet.create({
     width: 150,
     height: 40,
     fontSize: 20,
+  },
+  primaryText: {
+    color: '#3BA776',
+    marginBottom: 10,
+    fontSize: 20
   }
 
 });

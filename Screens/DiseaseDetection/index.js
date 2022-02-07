@@ -15,7 +15,7 @@ const gallery = require('../../assets/images/disease-detection/gallery.png')
 // Global style
 import globalStyles from "../../globalStyles";
 
-const detectDisease = async (result) => {
+const detectDisease = async (result, userDetails) => {
 
   let localUri = result.uri;
   let filename = localUri.split('/').pop();
@@ -24,8 +24,10 @@ const detectDisease = async (result) => {
   let type = match ? `image/${match[1]}` : `image`;
   const base64 = await FileSystem.readAsStringAsync(result.uri, { encoding: 'base64' });
 
+
   let formData = new FormData();
   formData.append('photo', base64 );
+  formData.append('userId', userDetails.user.id)
 
   const response =  await fetch( API_ROOT + '/detect-disease/', {
     method: 'POST',
@@ -38,9 +40,11 @@ const detectDisease = async (result) => {
   return await response.json()
 }
 
-const DiseaseDetection = ({ navigation }) => {
+const DiseaseDetection = ({ navigation, route }) => {
   const [detecting, setDetecting] = useState(false)
   const [pointerEvents, setPointerEvents] = useState('auto')
+
+  const userDetails = route.params
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library
@@ -56,10 +60,9 @@ const DiseaseDetection = ({ navigation }) => {
     }
     setDetecting(true)
     setPointerEvents('none')
-    const detectionResult = await detectDisease(result)
+    const detectionResult = await detectDisease(result, userDetails)
     setDetecting(false)
     setPointerEvents('auto')
-    console.log(detectionResult)
     navigation.navigate('ResultsPage', { ... detectionResult, image: result.uri})
 
   };
@@ -81,10 +84,9 @@ const DiseaseDetection = ({ navigation }) => {
     }
     setDetecting(true)
     setPointerEvents('none')
-    const detectionResult = await detectDisease(result)
+    const detectionResult = await detectDisease(result, userDetails)
     setDetecting(false)
     setPointerEvents('auto')
-    console.log(detectionResult)
     navigation.navigate('ResultsPage',{ ... detectionResult, image: result.uri})
   }
 

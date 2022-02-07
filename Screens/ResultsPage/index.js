@@ -6,7 +6,6 @@ import HealthyPlantResult from '../HealthyPlantResult';
 
 const ResultsPage = ({route, navigation}) => {
   const result = route.params
-  console.log(result)
   if(result.healthy)
   {
    return (

@@ -6,10 +6,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     flexDirection: "row"
   },
-  text: {
-    fontSize: 19,
-    fontWeight: "400"
-  }
 })
 
 export default styles;

@@ -1,13 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { View, Image, Pressable} from 'react-native';
 import styles from "../Header/styles";
 import {useRoute} from '@react-navigation/native';
 
-const Header = ({ navigation }) => {
+const Header = ({ navigation, userDetails }) => {
   
   const route = useRoute();
   const handleMenuPress = () => {
     if(route.name != 'UserDashboard')
+      if(!userDetails){
+        navigation.navigate('LoginSignup')
+        return
+      }
       navigation.navigate('UserDashboard')
   }
   return(
