@@ -15,7 +15,7 @@ import NotDetectedReport from '../ModalScreens/NotDetectedReport';
 
 
 const HealthyPlantResult = ({ img, userDetails, navigation }) => {
-  const [modalVisible, setModalVisible] = useState(true);
+  const [modalVisible, setModalVisible] = useState(false);
 
   const hideModal = () => setModalVisible(false);
   const showModal = () => setModalVisible(true);
