@@ -10,11 +10,12 @@ import DefaultView from '../../Layouts/DefaultView';
 const search = require('../../assets/images/Home/search.png')
 
 const Home = ({ navigation, route }) => {
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState("")
 
   const handlePress = () => {
     if(route.params) {
       navigation.navigate('Disease', route.params.userDetails)
+      // navigation.navigate('Disease', { user:{id: 1, name: "Arjun"} })
     }
     else
     navigation.navigate('LoginSignup')
@@ -23,7 +24,7 @@ const Home = ({ navigation, route }) => {
   return (
     <DefaultView navigation={navigation} userDetails = {route.params && route.params.userDetails} >
       <View style={styles.container}>
-        <SearchBar img={search} navigation={navigation} query={query} setQuery={setQuery} />
+        <SearchBar img={search} navigation={navigation} homeNavigationRoute={route} query={query} setQuery={setQuery} />
         <Weather />
         <News />
         <Button style={styles.button} color = "#3BA776" mode="contained" onPress={handlePress} dark={true}>

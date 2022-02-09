@@ -5,7 +5,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#ECDCDC',
     height: 68,
     marginBottom: 55,
-    borderRadius: 10
+    borderRadius: 10,
+    alignItems: "center",
+    flexDirection: "row"
   },
   button: {
     width:118,

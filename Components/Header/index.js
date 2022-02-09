@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
-import { View, Image, Pressable} from 'react-native';
+import React from "react";
+import { View, Image, Pressable, Text} from 'react-native';
 import styles from "../Header/styles";
 import {useRoute} from '@react-navigation/native';
 
 const Header = ({ navigation, userDetails }) => {
+  const user = userDetails && userDetails.user.username
   
   const route = useRoute();
   const handleMenuPress = () => {
@@ -12,17 +13,22 @@ const Header = ({ navigation, userDetails }) => {
         navigation.navigate('LoginSignup')
         return
       }
-      navigation.navigate('UserDashboard')
+      navigation.navigate('UserDashboard', userDetails)
   }
   return(
       <View style = {styles.container}>
           <Image style={styles.logo} source={require('../../assets/images/logo.png')} />
-
-          <Pressable
-            onPress={handleMenuPress}
-          >
-            <Image style={styles.menu} source={require('../../assets/images/dashboard.png')} />
-          </Pressable>
+            <View style={styles.userMenu}>
+                <Text style={styles.userName} >
+                 { user &&  user.split(' ')[0].length >= 3 ? user.split(' ')[0] : user }
+                </Text>
+              <Pressable
+                onPress={handleMenuPress}
+              >
+                <Image style={styles.menu} source={require('../../assets/images/dashboard.png')} />
+              </Pressable>
+            </View>
+            
       </View>
   );
 }

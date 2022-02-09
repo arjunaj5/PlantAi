@@ -6,15 +6,16 @@ import HealthyPlantResult from '../HealthyPlantResult';
 
 const ResultsPage = ({route, navigation}) => {
   const result = route.params
+  const userDetails = route.params.userDetails
   if(result.healthy)
   {
    return (
-     <HealthyPlantResult img={result.image} />
+     <HealthyPlantResult img={result.image} userDetails={userDetails} navigation={navigation} />
    ) 
   }
   return(
 
-    <DefaultView navigation={navigation}>
+    <DefaultView navigation={navigation} userDetails={userDetails}>
         
         <DetailsPage img={result.image} name ={result.name} description={result.description}/>
 

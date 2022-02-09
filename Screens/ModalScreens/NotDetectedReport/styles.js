@@ -2,7 +2,7 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
   header: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: "bold"
   },
   commentsContainer: {
@@ -23,6 +23,10 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: '90%',
     height: '60%'
+  },
+  leafImage: {
+    width: 200,
+    height: 200
   },
   boxOne: {
     alignItems: "center",

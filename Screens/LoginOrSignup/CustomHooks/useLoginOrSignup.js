@@ -34,7 +34,6 @@ const useLoginOrSignup = (navigation) => {
 
     if(userNameError === '' && passwordError === '')
     login(userName, password).then((result) => {
-      console.log(result)
       if(result.token){
         navigation.navigate('Home', {userDetails: result})
       }

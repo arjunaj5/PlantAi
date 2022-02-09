@@ -1,33 +1,15 @@
 import React from "react";
 import { Pressable, View, Text } from "react-native";
+import { ScrollView } from "react-native-web";
 import globalStyles from "../../globalStyles";
-import HistoryTablet from "./HistoryTablet";
-import ReportsTablet from "./ReportsTablet";
 import styles from "./styles";
 
-const DashboardMenu = ( {menu, setMenu} ) => {
+const DashboardMenu = ( {menu, setMenu, toShow} ) => {
 
-  let toShow
-  if(menu === 'history') {
-  toShow = ( <>
-    <HistoryTablet/>
-    <HistoryTablet/>
-    <HistoryTablet/>
-    </>
-  );
-  }
-  else {
-    toShow = (
-      <>
-      <ReportsTablet/>
-      <ReportsTablet/>
-      <ReportsTablet/>
-      </>
-    )
-  }
+
 
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} contentContainerStyle={{height: '100%'}}>
       <View style={styles.menu}>
         <Pressable
           onPress={() => setMenu('history')}
@@ -47,7 +29,7 @@ const DashboardMenu = ( {menu, setMenu} ) => {
       <View style={styles.dashboard}>
         {toShow}
       </View>
-    </View>
+    </ScrollView>
 
   )
 }

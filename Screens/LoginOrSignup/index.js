@@ -42,13 +42,21 @@ function LoginOrSignup( { navigation }) {
         <Header status = {status} setStatus = {setStatus}/>
 
         <View style={styles.form}>
-          <InputBox placeholder={'User name'} img = {username} value = {userName} setValue = {setUserName} />
-            <Text> { userNameError } </Text>
-          {status !== 'login' && 
-          <InputBox placeholder={'Email Id'} img = {email} value = {emailId} setValue = {setEmailId} /> }
-            { status !== 'login' && <Text> { emailIdError } </Text>  }
-          <InputBox placeholder={'Password'} img = {passwordimg} value = {password} setValue = {setPassword} />
-            <Text> { passwordError } </Text>
+          <View style={styles.inputGroup}>
+            <InputBox placeholder={'User name'} img = {username} value = {userName} setValue = {setUserName} />
+            <Text style={styles.errorText}> { userNameError } </Text>
+          </View>
+
+          <View style={styles.inputGroup}>
+            {status !== 'login' && 
+            <InputBox placeholder={'Email Id'} img = {email} value = {emailId} setValue = {setEmailId} /> }
+            { status !== 'login' && <Text style={styles.errorText}> { emailIdError } </Text>  }
+          </View>
+          
+          <View style={styles.inputGroup}>
+            <InputBox placeholder={'Password'} img = {passwordimg} value = {password} setValue = {setPassword} />
+            <Text style={styles.errorText}> { passwordError } </Text>
+          </View>
 
           <Button style={styles.button} color = "#3BA776" mode="contained" icon={arrow} dark={true} contentStyle={styles.arrow} 
           labelStyle={{fontSize: 35,}}
@@ -97,6 +105,16 @@ const styles = StyleSheet.create({
     color: '#3BA776',
     marginBottom: 10,
     fontSize: 20
+  },
+  errorText: {
+    fontSize: 10,
+    color: 'red',
+    padding: 2,
+    textTransform: 'uppercase',
+    fontWeight: 'bold'
+  },
+  inputGroup: {
+    alignItems: 'flex-start'
   }
 
 });

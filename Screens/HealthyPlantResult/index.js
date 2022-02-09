@@ -12,17 +12,16 @@ import DefaultModal from '../../Layouts/DefaultModal';
 import NotDetectedReport from '../ModalScreens/NotDetectedReport';
 
 
-const result=require('../../assets/images/PlantResult.png')
 
 
-const HealthyPlantResult = ({ img }) => {
-  const [modalVisible, setModalVisible] = useState(false);
+const HealthyPlantResult = ({ img, userDetails, navigation }) => {
+  const [modalVisible, setModalVisible] = useState(true);
 
   const hideModal = () => setModalVisible(false);
   const showModal = () => setModalVisible(true);
 
   return (
-    <DefaultView>
+    <DefaultView userDetails={userDetails} navigation={navigation}>
       <View style={styles.container}>
         <View>
           <Image
@@ -39,7 +38,7 @@ const HealthyPlantResult = ({ img }) => {
         </View>
       </View>
           <DefaultModal hideModal={hideModal} modalVisible={modalVisible} >
-            <NotDetectedReport />
+            <NotDetectedReport imageUrl={img} />
           </DefaultModal>
     </DefaultView>
   )

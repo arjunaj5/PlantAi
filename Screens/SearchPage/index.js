@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DefaultView from '../../Layouts/DefaultView';
-import { Image, View, ActivityIndicator } from 'react-native';
+import { Text, View, ActivityIndicator } from 'react-native';
 import SearchBar from '../../Components/Home/SearchBar';
 import styles from './styles';
 import PlantCards from '../../Components/SearchPage/PlantCards';
@@ -31,6 +31,9 @@ const SearchPage = ({ navigation, route }) => {
   const [query, setQuery] = useState(params.query)
   const [loading, setLoading] = useState(false)
 
+  const homeRoute = route.params.homeNavigationRoute
+  const userDetails = homeRoute.params && homeRoute.params.userDetails
+
   useEffect( () => {
     if(query !== '')
       getPlants()
@@ -47,7 +50,7 @@ const SearchPage = ({ navigation, route }) => {
 
 
     return (
-        <DefaultView navigation={navigation}>
+        <DefaultView navigation={navigation} userDetails={userDetails}>
             <View style={styles.searchview}>
                 <SearchBar img={search} query={query} setQuery={setQuery} onSearch={getPlants} />
             </View>
@@ -60,9 +63,13 @@ const SearchPage = ({ navigation, route }) => {
                   description={plant.description}
                   image_url={plant.image_url}
                   navigation={navigation}
+                  userDetails={userDetails}
                   />
               )
             } ) }
+            {
+              plants.length === 0 && <Text> No Results </Text>
+            }
         </DefaultView>
     )
 }

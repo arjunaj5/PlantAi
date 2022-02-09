@@ -1,5 +1,5 @@
 import React from "react";
-import { View , Text, TextInput} from "react-native";
+import { View , Text, Image, TextInput} from "react-native";
 import { Button } from "react-native-paper";
 
 
@@ -10,10 +10,10 @@ import globalStyles from "../../../globalStyles";
 
 
 
-const NotDetectedReport = () => {
+const NotDetectedReport = ({imageUrl}) => {
 
   return (
-    <View>
+    <View style={{height: '100%'}}>
       <Text style={styles.header}>Disease not detected</Text>
       <View style={styles.commentsContainer}>
         <Text>Comments:</Text>
@@ -26,16 +26,9 @@ const NotDetectedReport = () => {
       </View>
 
       <View style={styles.container}>
-        <View style={[styles.boxOne, globalStyles.boxShadow]} >
-         
-        </View>
-
-        <View style={[styles.boxTwo, globalStyles.boxShadow]}>
-          {/* <Image source={add} style={styles.image} />
-          
-            */}
-        </View>
+        <Image source={{uri: imageUrl}} style={styles.leafImage} />
       </View>
+
 
       <Button
         mode="contained"

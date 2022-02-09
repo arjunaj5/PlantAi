@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
   dashboard: {
     backgroundColor: '#fff',
-    height: '90%',
+    minHeight: '90%',
     borderRadius:20,
     borderTopLeftRadius: 0,
     paddingHorizontal: 23,

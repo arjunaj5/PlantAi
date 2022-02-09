@@ -6,10 +6,10 @@ import DetailsPage from '../../Components/DetailsPage';
 
 const PlantPage = ({route, navigation}) => {
   
-  const {image_url, name, description} = route.params
+  const {image_url, name, description, userDetails} = route.params
   return(
 
-    <DefaultView navigation={navigation} >
+    <DefaultView navigation={navigation} userDetails={userDetails} >
         
         <DetailsPage img={image_url} name={name} description={description}/>
 

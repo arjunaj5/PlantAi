@@ -4,9 +4,9 @@ import globalStyles from '../../../globalStyles';
 import styles from './styles';
 
 
-const PlantCards = ({name, description, image_url, navigation}) => {
+const PlantCards = ({name, description, image_url, navigation, userDetails}) => {
   const handlePress = () => {
-    navigation.navigate('PlantPage', {image_url, name, description})
+    navigation.navigate('PlantPage', {image_url, name, description, userDetails})
   }
   return (
       <Pressable onPress={handlePress} style={[styles.card, globalStyles.boxShadow]}>

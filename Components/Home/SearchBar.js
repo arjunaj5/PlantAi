@@ -3,10 +3,10 @@ import { View, StyleSheet, TextInput, Image, Pressable } from "react-native";
 
 
 
-function SearchBar({ img, navigation, query, setQuery, onSearch}) {
+function SearchBar({ img, navigation, query, setQuery, onSearch, homeNavigationRoute}) {
   const [placeholder, setPlaceholder] = useState("Search for Plants")
   const handlePress = () => {
-    navigation && navigation.navigate('SearchPage', {query})
+    navigation && navigation.navigate('SearchPage', {query, homeNavigationRoute})
     if(query !== ""){
       onSearch && onSearch()
     }

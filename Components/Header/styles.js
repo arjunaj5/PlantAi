@@ -15,6 +15,13 @@ logo: {
     height: 50,
     resizeMode: 'contain',
 },
+userMenu: {
+  flexDirection: "row"
+},
+userName: {
+  marginRight: 5,
+  fontSize: 18
+},
 menu: {
     width: 25,
     height: 25,
