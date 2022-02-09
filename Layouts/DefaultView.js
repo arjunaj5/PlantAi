@@ -5,7 +5,7 @@ import Header from '../Components/Header';
 const DefaultView = ({children, hideHeader, navigation, userDetails}) => {
   const styles = StyleSheet.create({
     root: {
-      flex: 1,
+      minHeight: '100%',
       backgroundColor: '#D3FFD8',
       alignItems: 'center',
       paddingTop: StatusBar.currentHeight,

@@ -1,6 +1,5 @@
 import React from "react";
-import { Pressable, View, Text } from "react-native";
-import { ScrollView } from "react-native-web";
+import { Pressable, View, Text, ScrollView } from "react-native";
 import globalStyles from "../../globalStyles";
 import styles from "./styles";
 
@@ -9,7 +8,7 @@ const DashboardMenu = ( {menu, setMenu, toShow} ) => {
 
 
   return (
-    <ScrollView style={styles.container} contentContainerStyle={{height: '100%'}}>
+    <View style={styles.container} >
       <View style={styles.menu}>
         <Pressable
           onPress={() => setMenu('history')}
@@ -26,10 +25,10 @@ const DashboardMenu = ( {menu, setMenu, toShow} ) => {
       </View>
 
 
-      <View style={styles.dashboard}>
+      <ScrollView style={styles.dashboard} contentContainerStyle={{minHeight: '100%'}}>
         {toShow}
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
 
   )
 }

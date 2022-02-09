@@ -46,6 +46,9 @@ const SearchPage = ({ navigation, route }) => {
       setLoading(false)
     })
   }
+  const noResult = (
+    plants.length === 0 &&   <Text> No Results </Text>
+  )
 
 
 
@@ -68,7 +71,7 @@ const SearchPage = ({ navigation, route }) => {
               )
             } ) }
             {
-              plants.length === 0 && <Text> No Results </Text>
+             ! loading && noResult
             }
         </DefaultView>
     )

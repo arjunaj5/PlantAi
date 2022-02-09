@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { Text } from "react-native";
 import DefaultView from "../../Layouts/DefaultView";
 import DefaultModal from "../../Layouts/DefaultModal"
 import HistoryTablet from "../../Components/DashboardMenu/HistoryTablet"
@@ -53,8 +54,8 @@ const UserDashboard = ({navigation, route}) => {
 
   useEffect( () => {
     const userId = userDetails.user.id
+    // const userId = 2
     getDetectionHistory(userId).then( result => {
-      console.log(result)
       if(result.length === 0){
         setEmptyHistory(true)
       }
@@ -76,7 +77,7 @@ const UserDashboard = ({navigation, route}) => {
 
   let toShow;
   if(menu === 'history') {
-    toShow =  emptyHistory ? 'No History To Show' : ( <>
+    toShow =  emptyHistory ? <Text> No History To Show </Text>  : ( <>
       {
         history.map((element, index) => {
           return (

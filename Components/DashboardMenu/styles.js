@@ -6,7 +6,8 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingHorizontal: 13,
     paddingBottom: 22,
-    marginTop: 35
+    marginTop: 35,
+    zIndex: 0
   },
   menu: {
     flexDirection: "row",
@@ -18,8 +19,8 @@ const styles = StyleSheet.create({
   },
   dashboard: {
     backgroundColor: '#fff',
-    minHeight: '90%',
-    borderRadius:20,
+    height: '85%',
+    borderRadius: 20,
     borderTopLeftRadius: 0,
     paddingHorizontal: 23,
     paddingVertical:50,

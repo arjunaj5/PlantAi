@@ -6,7 +6,6 @@ import styles from './styles'
 const HistoryTablet = ({history, showReportModal, setSelectedHistoryData}) => {
 
   const handlePress = () => {
-    console.log(history)
     setSelectedHistoryData(history)
     showReportModal()
   }

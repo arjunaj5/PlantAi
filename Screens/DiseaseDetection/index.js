@@ -24,7 +24,6 @@ const detectDisease = async (result) => {
   let type = match ? `image/${match[1]}` : `image`;
   const base64 = await FileSystem.readAsStringAsync(result.uri, { encoding: 'base64' });
   // const base64 = result.uri.split(';base64,')[1]
-  console.log(base64)
 
 
   let formData = new FormData();
@@ -117,7 +116,6 @@ const DiseaseDetection = ({ navigation, route }) => {
     setDetecting(true)
     setPointerEvents('none')
     const detectionResult = await detectDisease(result)
-    console.log(detectionResult)
     setDetecting(false)
     setPointerEvents('auto')
     navigation.navigate('ResultsPage', { ... detectionResult, image: result.uri, userDetails})
