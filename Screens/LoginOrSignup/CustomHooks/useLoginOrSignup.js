@@ -11,6 +11,7 @@ const useLoginOrSignup = (navigation) => {
   const [userNameError, setUserNameError] = useState('')
   const [emailIdError, setEmailIdError] = useState('')
   const [passwordError, setPasswordError] = useState('')
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     setUserNameError('')
@@ -32,15 +33,19 @@ const useLoginOrSignup = (navigation) => {
     }
 
 
-    if(userNameError === '' && passwordError === '')
-    login(userName, password).then((result) => {
-      if(result.token){
-        navigation.navigate('Home', {userDetails: result})
-      }
-      else {
-        setPasswordError('invalid credentials')
-      }
-    })
+    if(userNameError === '' && passwordError === ''){
+      setLoading(true)
+      login(userName, password, setLoading, setPasswordError).then((result) => {
+        if(result.token){
+          setLoading(false)
+          navigation.navigate('Home', {userDetails: result})
+        }
+        else {
+          setLoading(false)
+          setPasswordError('invalid credentials')
+        }
+      })
+    }
   }
 
   const handleSignup = () => {
@@ -58,12 +63,13 @@ const useLoginOrSignup = (navigation) => {
       setPasswordError('Password cannot be empty')
       return
     }
-
-    signup(userName, emailId, password).then( (response) => {
+    setLoading(true)
+    signup(userName, emailId, password, setLoading, setPasswordError).then( (response) => {
       if(response.token) {
         handleLogin()
       }
       else {
+        setLoading(false)
         if(response.username)
         setUserNameError(response.username[0])
         if(response.email)
@@ -91,7 +97,8 @@ const useLoginOrSignup = (navigation) => {
           passwordError,
 
           handleLogin,
-          handleSignup
+          handleSignup,
+          loading
         }
 }
 

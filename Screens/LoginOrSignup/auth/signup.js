@@ -1,6 +1,6 @@
 import { API_ROOT } from "../../../apiroot";
 
-const signup = async (username, email,  password) => {
+const signup = async (username, email,  password, setLoading, setPasswordError) => {
   const data = {username, email,  password}
   
   const response = await fetch( API_ROOT + '/create-user/', {
@@ -11,6 +11,7 @@ const signup = async (username, email,  password) => {
     },
     body: JSON.stringify(data) // body data type must match "Content-Type" header
   })
+
   return await response.json();
   }
   

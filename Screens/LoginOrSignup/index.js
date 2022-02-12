@@ -32,7 +32,8 @@ function LoginOrSignup( { navigation }) {
     passwordError,
 
     handleLogin,
-    handleSignup
+    handleSignup,
+    loading
   } = useLoginOrSignup(navigation)
 
   return (
@@ -58,7 +59,7 @@ function LoginOrSignup( { navigation }) {
             <Text style={styles.errorText}> { passwordError } </Text>
           </View>
 
-          <Button style={styles.button} color = "#3BA776" mode="contained" icon={arrow} dark={true} contentStyle={styles.arrow} 
+          <Button style={styles.button} color = "#3BA776" mode="contained" loading={loading} icon={arrow} dark={true} contentStyle={styles.arrow} 
           labelStyle={{fontSize: 35,}}
             onPress={() => {
               if(status == 'login')

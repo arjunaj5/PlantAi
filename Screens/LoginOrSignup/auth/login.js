@@ -1,6 +1,6 @@
 import { API_ROOT } from "../../../apiroot";
 
-const login = async (username, password) => {
+const login = async (username, password, setLoading, setPasswordError) => {
 const data = {username, password}
 
 const response = await fetch( API_ROOT + '/api-token-auth/', {
