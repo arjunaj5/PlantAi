@@ -18,6 +18,7 @@ import SearchPage from './Screens/SearchPage';
 import DefaultView from './Layouts/DefaultView';
 
 import UserDashboard from './Screens/UserDashboard'
+import HealthDepartmentDashboard from './Screens/HealthDepartmentDashboard';
 
 export default function App() {
  
@@ -29,8 +30,12 @@ export default function App() {
           headerShown: false
         }}
       >   
-
           <Stack.Screen
+            name="HealthDepartmentDashboard"
+            component={HealthDepartmentDashboard}
+            />
+
+          {/* <Stack.Screen
             name="Home"
             component={Home}
           />
@@ -66,7 +71,7 @@ export default function App() {
           <Stack.Screen
             name="NewsPage"
             component={NewsPage}
-          />
+          /> */}
 
 
           
