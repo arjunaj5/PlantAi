@@ -30,7 +30,7 @@ const findDetailsByDiseaseId = async (diseaseId) => {
 
 const UserDashboard = ({navigation, route}) => {
   const userDetails = route.params
-  const [menu, setMenu] = useState('history')
+  const [menu, setMenu] = useState('History')
   const [history, setHistory] = useState([])
   const [reports, setReports] = useState([])
 
@@ -46,8 +46,8 @@ const UserDashboard = ({navigation, route}) => {
   
   //To get history about all detections and reports
   useEffect( () => {
-    // const userId = userDetails.user.id
-    const userId = 1
+    const userId = userDetails.user.id
+    // const userId = 1
     getDetectionHistory(userId).then( result => {
       if(result.length === 0){
         setEmptyHistory(true)
@@ -114,13 +114,17 @@ const UserDashboard = ({navigation, route}) => {
       </>
     )
   }
-
+  const tabs = {
+    tab1: 'History',
+    tab2: 'Reports'
+  }
   return (
     <DefaultView navigation={navigation} userDetails={userDetails}>
           <DashboardMenu
             toShow={toShow}
             setMenu={setMenu}
             menu={menu}
+            tabs={tabs}
           />
           <DefaultModal
             modalVisible={reportModalVisible}

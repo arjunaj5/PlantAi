@@ -18,6 +18,7 @@ import SearchPage from './Screens/SearchPage';
 import DefaultView from './Layouts/DefaultView';
 
 import UserDashboard from './Screens/UserDashboard'
+import HealthDepartmentDashboard from './Screens/HealthDepartmentDashboard';
 
 export default function App() {
  
@@ -29,44 +30,48 @@ export default function App() {
           headerShown: false
         }}
       >   
+        <Stack.Screen
+          name="HealthDepartmentDashboard"
+          component={HealthDepartmentDashboard}
+        />
 
-          {/* <Stack.Screen
-            name="Home"
-            component={Home}
+        {/* <Stack.Screen
+          name="Home"
+          component={Home}
+        />
+        <Stack.Screen
+          name="LoginSignup"
+          component={LoginOrSignup}
+        /> */}
+        <Stack.Screen
+          name='UserDashboard'
+          component={UserDashboard}
           />
-          <Stack.Screen
-            name="LoginSignup"
-            component={LoginOrSignup}
-          /> */}
-          <Stack.Screen
-            name='UserDashboard'
-            component={UserDashboard}
-            />
 
-          <Stack.Screen
-            name='SearchPage'
-            component={SearchPage}
-          />
-          <Stack.Screen
-            name = "Disease"
-            component = {DiseaseDetection}
-          />
-          <Stack.Screen
-            name='HealthyPlantResult'
-            component={HealthyPlantResult}
-          />
-          <Stack.Screen 
-          name="ResultsPage"
-          component={ResultsPage}
-          />
-          <Stack.Screen
-          name="PlantPage"
-          component={PlantPage}
-          />
-          <Stack.Screen
-            name="NewsPage"
-            component={NewsPage}
-          />
+        <Stack.Screen
+          name='SearchPage'
+          component={SearchPage}
+        />
+        <Stack.Screen
+          name = "Disease"
+          component = {DiseaseDetection}
+        />
+        <Stack.Screen
+          name='HealthyPlantResult'
+          component={HealthyPlantResult}
+        />
+        <Stack.Screen 
+        name="ResultsPage"
+        component={ResultsPage}
+        />
+        <Stack.Screen
+        name="PlantPage"
+        component={PlantPage}
+        />
+        <Stack.Screen
+          name="NewsPage"
+          component={NewsPage}
+        /> 
 
 
           

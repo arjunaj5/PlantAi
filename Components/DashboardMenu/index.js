@@ -3,24 +3,21 @@ import { Pressable, View, Text, ScrollView } from "react-native";
 import globalStyles from "../../globalStyles";
 import styles from "./styles";
 
-const DashboardMenu = ( {menu, setMenu, toShow} ) => {
-
-
-
+const DashboardMenu = ( {menu, setMenu, toShow, tabs} ) => {
   return (
     <View style={styles.container} >
       <View style={styles.menu}>
         <Pressable
-          onPress={() => setMenu('history')}
-          style={[styles.pressable, menu === 'history' && {backgroundColor: '#fff'} , globalStyles.boxShadow]}
+          onPress={() => setMenu(tabs.tab1)}
+          style={[styles.pressable, menu === tabs.tab1 && {backgroundColor: '#fff'} , globalStyles.boxShadow]}
         >
-          <Text> History </Text>
+          <Text>{ tabs.tab1 }</Text>
         </Pressable>
         <Pressable
-          onPress={() => setMenu('reports')}
-          style={[styles.pressable, menu === 'reports' && {backgroundColor: '#fff'} , globalStyles.boxShadow]}
+          onPress={() => setMenu(tabs.tab2)}
+          style={[styles.pressable, menu === tabs.tab2 && {backgroundColor: '#fff'} , globalStyles.boxShadow]}
         >
-          <Text> Reports </Text>
+          <Text>{ tabs.tab2 }</Text>
         </Pressable>
       </View>
 
