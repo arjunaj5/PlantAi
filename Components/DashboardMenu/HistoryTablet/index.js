@@ -22,8 +22,15 @@ const HistoryTablet = ({history, showReportModal, setSelectedHistoryData}) => {
         {history.disease_name ? history.disease_name : 'Healthy' } 
         </Text>
       
-        <Button style={styles.button} color = "#3BA776" mode="contained" onPress={handlePress} dark={true}>
-          <Text  style={styles.text}>Report</Text>
+        <Button
+          style={styles.button}
+          color = "#3BA776"
+          mode="contained"
+          onPress={handlePress}
+          dark={true}
+          disabled={history.reported}
+        >
+          <Text  style={styles.text}>{history.reported ? 'Reported': 'Report'}</Text>
         </Button>
     </View>
   )

@@ -14,7 +14,7 @@ import NotDetectedReport from '../ModalScreens/NotDetectedReport';
 
 
 
-const HealthyPlantResult = ({ img, userDetails, navigation }) => {
+const HealthyPlantResult = ({ img, userDetails, navigation, ready, setReady, reportData }) => {
   const [modalVisible, setModalVisible] = useState(false);
 
   const hideModal = () => setModalVisible(false);
@@ -38,7 +38,7 @@ const HealthyPlantResult = ({ img, userDetails, navigation }) => {
         </View>
       </View>
           <DefaultModal hideModal={hideModal} modalVisible={modalVisible} >
-            <NotDetectedReport imageUrl={img} />
+            <NotDetectedReport imageUrl={img} ready={ready} setReady={setReady} reportData={reportData} />
           </DefaultModal>
     </DefaultView>
   )

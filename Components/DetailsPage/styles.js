@@ -25,13 +25,20 @@ const styles = StyleSheet.create({
       padding: 30,
   },
   heading: {
-    fontSize: 19,
-    fontWeight: "700",
-    paddingVertical: 20
+    fontSize: 18,
+    fontWeight: "600",
+    paddingVertical: 10
   },
   para: {
-      fontSize: 19,
+      fontSize: 18,
       fontWeight: "400"
+  },
+  primaryText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#3BA776',
+    marginTop: 45,
+
   }
 
 })

@@ -15,15 +15,16 @@ const gallery = require('../../assets/images/disease-detection/gallery.png')
 // Global style
 import globalStyles from "../../globalStyles";
 
-const detectDisease = async (result) => {
 
-  let localUri = result.uri;
+const detectDisease = async (uri) => {
+
+  let localUri = uri;
   let filename = localUri.split('/').pop();
 
   let match = /\.(\w+)$/.exec(filename);
-  let type = match ? `image/${match[1]}` : `image`;
-  const base64 = await FileSystem.readAsStringAsync(result.uri, { encoding: 'base64' });
-  // const base64 = result.uri.split(';base64,')[1]
+  // let type = match ? `image/${match[1]}` : `image`;
+  // const base64 = await FileSystem.readAsStringAsync(result.uri, { encoding: 'base64' });
+  const base64 = uri.split(';base64,')[1]
 
 
   let formData = new FormData();
@@ -38,32 +39,6 @@ const detectDisease = async (result) => {
   })
 
   return await response.json()
-}
-const postToImagekit = async (result, userId, detectionResult) => {
-  const base64 = await FileSystem.readAsStringAsync(result.uri, { encoding: 'base64' });
-  // const base64 = result.uri
-  let formData = new FormData();
-  formData.append('base64', base64 );
-  formData.append('userId', userId);
-  if(detectionResult.healthy){
-    formData.append('healthy', true);
-  }
-  else {
-    formData.append('healthy', false);
-    formData.append('mlId', detectionResult.ml_id);
-  }
-  
-
-  fetch( API_ROOT + '/upload-imagekit/', {
-    method: 'POST',
-    body: formData,
-    header: {
-      'content-type': 'multipart/form-data',
-    },
-  }).then((err) => {
-    err.json().then(console.log)
-  })
-
 }
 
 const DiseaseDetection = ({ navigation, route }) => {
@@ -85,7 +60,7 @@ const DiseaseDetection = ({ navigation, route }) => {
       return
     }
 
-    handleImage(result);
+    handleImage(result.uri);
   };
 
   const openCamera = async () => {
@@ -108,18 +83,18 @@ const DiseaseDetection = ({ navigation, route }) => {
     if (result.cancelled) {
       return;
     }
-    handleImage(result);
+    handleImage(result.uri);
   }
 
-  const handleImage = async (result) => {
+  const handleImage = async (uri) => {
 
     setDetecting(true)
     setPointerEvents('none')
-    const detectionResult = await detectDisease(result)
+    const detectionResult = await detectDisease(uri)
+    console.log(detectionResult)
     setDetecting(false)
     setPointerEvents('auto')
-    navigation.navigate('ResultsPage', { ... detectionResult, image: result.uri, userDetails})
-    postToImagekit(result, userDetails.user.id, detectionResult )
+    navigation.navigate('ResultsPage', { detectionResult, imageUri: uri, userDetails})
 
   }
 

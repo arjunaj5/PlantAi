@@ -30,14 +30,14 @@ export default function App() {
         }}
       >   
 
-          <Stack.Screen
+          {/* <Stack.Screen
             name="Home"
             component={Home}
           />
           <Stack.Screen
             name="LoginSignup"
             component={LoginOrSignup}
-          />
+          /> */}
           <Stack.Screen
             name='UserDashboard'
             component={UserDashboard}

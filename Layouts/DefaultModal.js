@@ -1,10 +1,11 @@
 import React from "react";
 import { Button, Portal, Provider, Modal } from 'react-native-paper';
-import { Text, View, StyleSheet } from "react-native";
+import { Text, View, StyleSheet, Dimensions } from "react-native";
+
 
 
 const DefaultModal = ({modalVisible, hideModal, children}) => {
-
+  const windowHeight = Dimensions.get('window').height;
   return(
     <Provider>
         <Portal>
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     paddingHorizontal: 30,
     width: '90%',
-    minHeight: '80%',
+    height: '80%',
     marginTop: 30,
     alignSelf: "center",
     borderRadius: 20,

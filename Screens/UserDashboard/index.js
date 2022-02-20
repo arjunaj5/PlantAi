@@ -9,40 +9,33 @@ import ReportsTablet from "../../Components/DashboardMenu/ReportsTablet";
 
 import DashboardMenu from "../../Components/DashboardMenu";
 import { API_ROOT } from "../../apiroot";
-import NotDetectedReport from "../ModalScreens/NotDetectedReport";
 import NotCuredReport from "../ModalScreens/NotCuredReport";
+import { getDetectionHistory, getReports } from "./helper";
+
 
 const findDetailsByDiseaseId = async (diseaseId) => {
-const result = await fetch( API_ROOT + '/detection-details-by-disease-id/', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify({disease_id: diseaseId})
-})
-return await result.json()
-
-}
-
-const getDetectionHistory = async (id) => {
-  const body = {
-    id
-  }
-  const response = await fetch( API_ROOT + '/user-history/' ,{
+  console.log("finding details by disease id")
+  const result = await fetch( API_ROOT + '/detection-details-by-disease-id/', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json',
+      'Content-Type': 'application/json'
     },
-    body: JSON.stringify(body)
-  });
-  return await response.json();
+    body: JSON.stringify({disease_id: diseaseId})
+  })
+  return await result.json()
+
 }
+
+
 
 const UserDashboard = ({navigation, route}) => {
   const userDetails = route.params
   const [menu, setMenu] = useState('history')
   const [history, setHistory] = useState([])
-  const [emptyHistory, setEmptyHistory] = useState(false)
+  const [reports, setReports] = useState([])
+
+  const [emptyHistory, setEmptyHistory] = useState(false);
+  const [emptyReports, setEmptyReports] = useState(false);
   const [reportModalVisible, setReportModalVisible] = useState(false);
 
   const [selectedtHistoryData, setSelectedHistoryData] = useState({})
@@ -51,16 +44,28 @@ const UserDashboard = ({navigation, route}) => {
   const hideReportModal = () => setReportModalVisible(false);
   const showReportModal = () => setReportModalVisible(true);
   
-
+  //To get history about all detections and reports
   useEffect( () => {
-    const userId = userDetails.user.id
-    // const userId = 2
+    // const userId = userDetails.user.id
+    const userId = 1
     getDetectionHistory(userId).then( result => {
       if(result.length === 0){
         setEmptyHistory(true)
       }
       else {
+        console.log("history")
+        console.log(result)
         setHistory(result)
+      }
+    })
+    getReports(userId).then(result => {
+      if(result.length === 0){
+        setEmptyReports(true)
+      }
+      else {
+        console.log("reports")
+        console.log(result)
+        setReports(result)
       }
     })
   }, [] )
@@ -94,11 +99,18 @@ const UserDashboard = ({navigation, route}) => {
   );
   }
   else {
-    toShow = (
-      <>
-      <ReportsTablet/>
-      <ReportsTablet/>
-      <ReportsTablet/>
+    toShow = emptyReports ? <Text> No Reports Submitted yet</Text> : 
+    (
+      <> {
+      reports.map((report, index) => {
+        return(
+          <ReportsTablet 
+            report={report}
+            key={index}
+            />
+        )
+        })
+    }
       </>
     )
   }
@@ -114,7 +126,11 @@ const UserDashboard = ({navigation, route}) => {
             modalVisible={reportModalVisible}
             hideModal={hideReportModal}
           >
-            <NotCuredReport selectedtHistoryData={selectedtHistoryData} fetchedHistoryData={fetchedHistoryData} />
+            <NotCuredReport 
+              selectedtHistoryData={selectedtHistoryData}
+              fetchedHistoryData={fetchedHistoryData}
+              hideModal={hideReportModal}
+            />
           </DefaultModal>
     </DefaultView>
   )

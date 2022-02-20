@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { View , Text, TextInput, Image} from "react-native";
 import { Button } from "react-native-paper";
 
@@ -6,14 +6,27 @@ import { Button } from "react-native-paper";
 import styles from './styles';
 import globalStyles from "../../../globalStyles";
 
+import { sendReport } from "../../UserDashboard/helper";
 
 
-
-
-const NotCuredReport = ({selectedtHistoryData, fetchedHistoryData}) => {
+const NotCuredReport = ({selectedtHistoryData, fetchedHistoryData, hideModal}) => {
+  const [comment, setComment] = useState('')
   const diseaseName = selectedtHistoryData.disease_name;
   const leafUrl = selectedtHistoryData.leaf_url;
   const plantName = fetchedHistoryData['plant_name']
+
+  const [loading, setLoading] = useState(false)
+  
+  const historyId = selectedtHistoryData['id']
+  const reportStatus = 'Submitted'
+
+  const handlePress = () => {
+    setLoading(true);
+    sendReport(historyId, reportStatus, comment).then(response => {
+      setLoading(false);
+      hideModal()
+    })
+  }
 
 
   return (
@@ -35,6 +48,8 @@ const NotCuredReport = ({selectedtHistoryData, fetchedHistoryData}) => {
           numberOfLines={3}
           style={styles.commentsTextInput}
           maxLength={100}
+          value={comment}
+          onChangeText={setComment}
         />
       </View>
 
@@ -45,9 +60,10 @@ const NotCuredReport = ({selectedtHistoryData, fetchedHistoryData}) => {
       <Button
         mode="contained"
         color="#3BA776"
-        onPress={() => console.log('Pressed')}
+        onPress={handlePress}
         dark={true}
         style={[globalStyles.button,{alignSelf:"flex-end"}]}
+        loading={loading}
       >
         <Text style={globalStyles.buttonText}> Report </Text>
       </Button>

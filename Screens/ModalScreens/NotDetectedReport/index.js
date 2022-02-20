@@ -1,16 +1,26 @@
-import React from "react";
-import { View , Text, Image, TextInput} from "react-native";
+import React, { useState } from "react";
+import { View , Text, Image, TextInput, ToastAndroid} from "react-native";
 import { Button } from "react-native-paper";
 
 
 import styles from './styles';
 import globalStyles from "../../../globalStyles";
+import { sendReport } from "../../UserDashboard/helper";
 
 
 
+const NotDetectedReport = ({imageUrl, ready, setReady, reportData}) => {
+  const [comments, setComments] = useState('')
 
+  const handlePress = () => {
+    setReady(false)
+    sendReport(reportData.historyId, 'submitted', comments).then((response)=> {
+      console.log(response)
+      setReady(true)
+      ToastAndroid.show('Report sent successfully!', ToastAndroid.SHORT);
+    })
+  }
 
-const NotDetectedReport = ({imageUrl}) => {
 
   return (
     <View style={{height: '100%'}}>
@@ -22,6 +32,8 @@ const NotDetectedReport = ({imageUrl}) => {
           numberOfLines={3}
           style={styles.commentsTextInput}
           maxLength={100}
+          value={comments}
+          onChangeText={setComments}
         />
       </View>
 
@@ -33,9 +45,11 @@ const NotDetectedReport = ({imageUrl}) => {
       <Button
         mode="contained"
         color="#3BA776"
-        onPress={() => console.log('Pressed')}
+        onPress={handlePress}
         dark={true}
         style={[globalStyles.button,{alignSelf:"flex-end"}]}
+        loading={!ready}
+        disabled={!ready}
       >
         <Text style={globalStyles.buttonText}> Report </Text>
       </Button>
