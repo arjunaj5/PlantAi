@@ -36,6 +36,7 @@ const useLoginOrSignup = (navigation) => {
     if(userNameError === '' && passwordError === ''){
       setLoading(true)
       login(userName, password, setLoading, setPasswordError).then((result) => {
+        console.log(result)
         if(result.token){
           setLoading(false)
           navigation.navigate('Home', {userDetails: result})

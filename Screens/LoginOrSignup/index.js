@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, StyleSheet, View, Image } from 'react-native';
 import Header from '../../Components/LoginOrSignup/Header'
 import InputBox from '../../Components/LoginOrSignup/InputBox';
@@ -35,7 +35,7 @@ function LoginOrSignup( { navigation }) {
     handleSignup,
     loading
   } = useLoginOrSignup(navigation)
-
+  
   return (
     <DefaultView hideHeader>
       <Text style={styles.primaryText} > You have to login or signup first</Text>
@@ -44,18 +44,18 @@ function LoginOrSignup( { navigation }) {
 
         <View style={styles.form}>
           <View style={styles.inputGroup}>
-            <InputBox placeholder={'User name'} img = {username} value = {userName} setValue = {setUserName} />
+            <InputBox placeholder={'User name'} img = {username} value = {userName} setValue = {setUserName} status={status}  />
             <Text style={styles.errorText}> { userNameError } </Text>
           </View>
 
           <View style={styles.inputGroup}>
             {status !== 'login' && 
-            <InputBox placeholder={'Email Id'} img = {email} value = {emailId} setValue = {setEmailId} /> }
+            <InputBox placeholder={'Email Id'} img = {email} value = {emailId} setValue = {setEmailId} status={status}  /> }
             { status !== 'login' && <Text style={styles.errorText}> { emailIdError } </Text>  }
           </View>
           
           <View style={styles.inputGroup}>
-            <InputBox placeholder={'Password'} img = {passwordimg} value = {password} setValue = {setPassword} />
+            <InputBox placeholder={'Password'} img = {passwordimg} value = {password} setValue = {setPassword} status={status} isPassword={true} />
             <Text style={styles.errorText}> { passwordError } </Text>
           </View>
 

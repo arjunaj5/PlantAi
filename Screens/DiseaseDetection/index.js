@@ -22,9 +22,9 @@ const detectDisease = async (uri) => {
   let filename = localUri.split('/').pop();
 
   let match = /\.(\w+)$/.exec(filename);
-  // let type = match ? `image/${match[1]}` : `image`;
-  // const base64 = await FileSystem.readAsStringAsync(result.uri, { encoding: 'base64' });
-  const base64 = uri.split(';base64,')[1]
+  let type = match ? `image/${match[1]}` : `image`;
+  const base64 = await FileSystem.readAsStringAsync(uri, { encoding: 'base64' });
+  // const base64 = uri.split(';base64,')[1]
 
 
   let formData = new FormData();
@@ -46,6 +46,12 @@ const DiseaseDetection = ({ navigation, route }) => {
   const [pointerEvents, setPointerEvents] = useState('auto')
 
   const userDetails = route.params
+  // const userDetails = {
+  //   user: {
+  //     username: 'Arjun',
+  //     id: '1'
+  //   }
+  // }
 
   const pickImage = async () => {
     // No permissions request is necessary for launching the image library

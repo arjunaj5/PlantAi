@@ -2,8 +2,12 @@ import React from 'react';
 import { View, StyleSheet, TextInput, Image } from "react-native";
 
 
+function InputBox({placeholder, img, value, setValue, isPassword, status}) {
 
-function InputBox({placeholder, img, value, setValue}) {
+  let secure = false
+  if(isPassword && status === 'login'){
+    secure = true
+  }
   return (
     <View style={styles.container}>
       <View
@@ -18,6 +22,7 @@ function InputBox({placeholder, img, value, setValue}) {
         style = {styles.input}
         placeholder={placeholder}
         placeholderTextColor="#C2B8B8"
+        secureTextEntry={secure}
         value={value}
         onChangeText={setValue}
       />

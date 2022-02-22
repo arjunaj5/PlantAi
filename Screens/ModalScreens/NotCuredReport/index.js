@@ -9,7 +9,7 @@ import globalStyles from "../../../globalStyles";
 import { sendReport } from "../../UserDashboard/helper";
 
 
-const NotCuredReport = ({selectedtHistoryData, fetchedHistoryData, hideModal}) => {
+const NotCuredReport = ({selectedtHistoryData, fetchedHistoryData, hideModal, setReportSend}) => {
   const [comment, setComment] = useState('')
   const diseaseName = selectedtHistoryData.disease_name;
   const leafUrl = selectedtHistoryData.leaf_url;
@@ -18,19 +18,24 @@ const NotCuredReport = ({selectedtHistoryData, fetchedHistoryData, hideModal}) =
   const [loading, setLoading] = useState(false)
   
   const historyId = selectedtHistoryData['id']
-  const reportStatus = 'Submitted'
+  const reportStatus = 'submitted'
 
   const handlePress = () => {
     setLoading(true);
+    setReportSend(false)
     sendReport(historyId, reportStatus, comment).then(response => {
       setLoading(false);
       hideModal()
+      setReportSend(true)
     })
   }
 
 
   return (
-    <View style={{height: '90%'}} >
+    <View style={{minheight: '90%',
+    paddingVertical: 20,
+    paddingHorizontal: 30,
+    }} >
       <Text style={styles.header}>Disease not cured</Text>
 
       <View style={styles.commentsContainer}>
@@ -62,7 +67,7 @@ const NotCuredReport = ({selectedtHistoryData, fetchedHistoryData, hideModal}) =
         color="#3BA776"
         onPress={handlePress}
         dark={true}
-        style={[globalStyles.button,{alignSelf:"flex-end"}]}
+        style={[globalStyles.button,{alignSelf:"flex-end", position: 'relative', bottom: 0}]}
         loading={loading}
       >
         <Text style={globalStyles.buttonText}> Report </Text>

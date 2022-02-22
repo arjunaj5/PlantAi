@@ -22,7 +22,7 @@ const DashboardMenu = ( {menu, setMenu, toShow, tabs} ) => {
       </View>
 
 
-      <ScrollView style={styles.dashboard} contentContainerStyle={{minHeight: '100%'}}>
+      <ScrollView style={styles.dashboard} contentContainerStyle={{minHeight: '100%', paddingBottom: 20}}>
         {toShow}
       </ScrollView>
     </View>

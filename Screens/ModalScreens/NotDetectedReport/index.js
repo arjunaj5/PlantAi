@@ -23,7 +23,10 @@ const NotDetectedReport = ({imageUrl, ready, setReady, reportData}) => {
 
 
   return (
-    <View style={{height: '100%'}}>
+    <View style={{height: '100%',
+    paddingVertical: 20,
+    paddingHorizontal: 30,
+    }}>
       <Text style={styles.header}>Disease not detected</Text>
       <View style={styles.commentsContainer}>
         <Text>Comments:</Text>

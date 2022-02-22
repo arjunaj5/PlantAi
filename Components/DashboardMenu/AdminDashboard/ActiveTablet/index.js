@@ -1,5 +1,5 @@
 import React from 'react'
-import { Text, Pressable } from 'react-native'
+import { Text, Pressable, View } from 'react-native'
 
 import styles from './styles'
 
@@ -15,9 +15,14 @@ const ActiveTablet = ({ report, setSelectedReport, showAdminModal }) => {
 
   return(
     <Pressable style={styles.container} onPress={handlePress} >
-      <Text>{ detected ? 'Disease Not Cured': 'Disease not Detected' }</Text>
+      <Text style={styles.heading} >{ detected ? 'Disease Not Cured': 'Disease not Detected' }</Text>
       <Text>{ detected && `Disease Name: ${disease}` }</Text>
-      <Text>Comments: { comments === '' ? 'No Comments by user': comments }</Text>
+      <View style={styles.row} >
+      <Text>Comments:</Text>
+        <View style={styles.comments}>
+          <Text>{ comments === '' ? 'No Comments by user': comments } </Text>
+        </View>
+      </View>
     </Pressable>
   )
 }

@@ -40,14 +40,16 @@ const UserDashboard = ({navigation, route}) => {
 
   const [selectedtHistoryData, setSelectedHistoryData] = useState({})
   const [fetchedHistoryData, setFetchedHistoryData] = useState({})
+  const [reportSend, setReportSend] = useState(true)
 
   const hideReportModal = () => setReportModalVisible(false);
   const showReportModal = () => setReportModalVisible(true);
-  
+  const userId = userDetails.user.id
+  // const userId = '2'
+
   //To get history about all detections and reports
   useEffect( () => {
-    const userId = userDetails.user.id
-    // const userId = 1
+    reportSend &&
     getDetectionHistory(userId).then( result => {
       if(result.length === 0){
         setEmptyHistory(true)
@@ -58,6 +60,10 @@ const UserDashboard = ({navigation, route}) => {
         setHistory(result)
       }
     })
+  }, [reportSend] )
+
+  useEffect( () => {
+    reportSend == true &&
     getReports(userId).then(result => {
       if(result.length === 0){
         setEmptyReports(true)
@@ -68,7 +74,7 @@ const UserDashboard = ({navigation, route}) => {
         setReports(result)
       }
     })
-  }, [] )
+  }, [reportSend])
   
   // To get other details about the detection history from db
   useEffect( () => {
@@ -81,7 +87,7 @@ const UserDashboard = ({navigation, route}) => {
   }, [selectedtHistoryData] )
 
   let toShow;
-  if(menu === 'history') {
+  if(menu === 'History') {
     toShow =  emptyHistory ? <Text> No History To Show </Text>  : ( <>
       {
         history.map((element, index) => {
@@ -101,7 +107,7 @@ const UserDashboard = ({navigation, route}) => {
   else {
     toShow = emptyReports ? <Text> No Reports Submitted yet</Text> : 
     (
-      <> {
+      <>{
       reports.map((report, index) => {
         return(
           <ReportsTablet 
@@ -110,8 +116,7 @@ const UserDashboard = ({navigation, route}) => {
             />
         )
         })
-    }
-      </>
+    }</>
     )
   }
   const tabs = {
@@ -134,6 +139,7 @@ const UserDashboard = ({navigation, route}) => {
               selectedtHistoryData={selectedtHistoryData}
               fetchedHistoryData={fetchedHistoryData}
               hideModal={hideReportModal}
+              setReportSend={setReportSend}
             />
           </DefaultModal>
     </DefaultView>

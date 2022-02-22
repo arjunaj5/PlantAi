@@ -5,7 +5,6 @@ import { Text, View, StyleSheet, Dimensions } from "react-native";
 
 
 const DefaultModal = ({modalVisible, hideModal, children}) => {
-  const windowHeight = Dimensions.get('window').height;
   return(
     <Provider>
         <Portal>
@@ -21,8 +20,6 @@ const DefaultModal = ({modalVisible, hideModal, children}) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    paddingVertical: 20,
-    paddingHorizontal: 30,
     width: '90%',
     height: '80%',
     marginTop: 30,

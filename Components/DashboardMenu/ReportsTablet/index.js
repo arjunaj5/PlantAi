@@ -11,7 +11,7 @@ const ReportsTablet = ({report}) => {
     <View style={styles.container}>
       <Text>Report:{detected ? 'Disease Detected' : 'Disease Not Detected' }</Text>
       <Text>{diseaseName}</Text>
-      <View style={styles.status} >
+      <View style={styles.status}>
         <Text style={styles.statusText}>{status}</Text>
       </View>
     </View>

@@ -4,23 +4,30 @@ import styles from "../Header/styles";
 import {useRoute} from '@react-navigation/native';
 
 const Header = ({ navigation, userDetails }) => {
-  const user = userDetails && userDetails.user.username
+  const user = userDetails && userDetails.user
   
   const route = useRoute();
   const handleMenuPress = () => {
-    if(route.name != 'UserDashboard')
-      if(!userDetails){
-        navigation.navigate('LoginSignup')
-        return
-      }
+    if(!userDetails){
+      navigation.navigate('LoginSignup')
+      return
+    }
+    if(route.name == 'UserDashboard' || route.name == 'HealthDepartmentDashboard')
+    return;
+
+    if(user.groups && user.groups[0] == 'HealthDeptAdmin'){
+      navigation.navigate('HealthDepartmentDashboard', userDetails)
+    }
+    else {
       navigation.navigate('UserDashboard', userDetails)
+    }
   }
   return(
       <View style = {styles.container}>
           <Image style={styles.logo} source={require('../../assets/images/logo.png')} />
             <View style={styles.userMenu}>
                 <Text style={styles.userName} >
-                 { user &&  user.split(' ')[0].length >= 3 ? user.split(' ')[0] : user }
+                 { user &&  user.username.split(' ')[0].length >= 3 ? user.username.split(' ')[0] : user }
                 </Text>
               <Pressable
                 onPress={handleMenuPress}
