@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import DefaultView from '../../Layouts/DefaultView';
-import { Text, View, ActivityIndicator } from 'react-native';
+import { Text, View, ActivityIndicator, ScrollView } from 'react-native';
 import SearchBar from '../../Components/Home/SearchBar';
 import styles from './styles';
 import PlantCards from '../../Components/SearchPage/PlantCards';
@@ -58,6 +58,7 @@ const SearchPage = ({ navigation, route }) => {
                 <SearchBar img={search} query={query} setQuery={setQuery} onSearch={getPlants} />
             </View>
             {loading && <ActivityIndicator size='large' color="#3BA776" />}
+            <ScrollView style={{maxHeight: '70%'}} contentContainerStyle={{paddingBottom: 20}} >
             {! loading && plants.map( (plant, index) => {
               return (
                 <PlantCards 
@@ -70,6 +71,7 @@ const SearchPage = ({ navigation, route }) => {
                   />
               )
             } ) }
+            </ScrollView>
             {
              ! loading && noResult
             }

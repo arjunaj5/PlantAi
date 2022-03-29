@@ -10,7 +10,6 @@ const ActiveTablet = ({ report, setSelectedReport, showAdminModal }) => {
   const handlePress = () => {
     setSelectedReport(report)
     showAdminModal()
-    console.log('pressed')
   }
 
   return(

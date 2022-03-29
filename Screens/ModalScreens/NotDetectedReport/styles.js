@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
   leafImage: {
     width: 200,
-    height: 200
+    height: '50%'
   },
   boxOne: {
     alignItems: "center",

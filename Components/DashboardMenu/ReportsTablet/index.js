@@ -1,20 +1,28 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React, { useEffect } from 'react'
+import { View, Text, Pressable } from 'react-native'
 
 import styles from './styles'
-const ReportsTablet = ({report}) => {
+const ReportsTablet = ({report, showReportResultModal, setSelectedReport}) => {
   const status = report.status
   const diseaseName = report.disease
   const detected = report.detected
 
+  const borderStyle = status === 'replied' &&{
+    borderWidth: 2,
+    borderColor: '#3BA776'
+  }
+  const handlePress = () =>{
+    setSelectedReport(report)
+    status === 'replied' && showReportResultModal()
+  }
   return (
-    <View style={styles.container}>
-      <Text>Report:{detected ? 'Disease Detected' : 'Disease Not Detected' }</Text>
-      <Text>{diseaseName}</Text>
+    <Pressable style={[styles.container, borderStyle]} onPress={handlePress}>
+      <Text>Report: {detected ? 'Disease Not Cured' : 'Disease Not Detected' }</Text>
+      <Text>{detected && 'Detected Disease: ' + diseaseName }</Text>
       <View style={styles.status}>
         <Text style={styles.statusText}>{status}</Text>
       </View>
-    </View>
+    </Pressable>
   )
 }
 

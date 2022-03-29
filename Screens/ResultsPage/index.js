@@ -3,21 +3,36 @@ import DefaultView from '../../Layouts/DefaultView';
 import DiseaseDetailsPage from '../../Components/DetailsPage/DiseaseDetailsPage';
 import HealthyPlantResult from '../HealthyPlantResult';
 
+import * as ImageManipulator from 'expo-image-manipulator';
+
+
 import { postToImagekit } from './helper';
 
 
 const ResultsPage = ({route, navigation}) => {
   const result = route.params.detectionResult
+  const probability = result.probability
   const imageUri = route.params.imageUri
   const userDetails = route.params.userDetails
   const [ready, setReady] = useState(false)
 
   const [reportData, setReportData] = useState({})
 
-  useEffect(()=> {
-    postToImagekit(imageUri, userDetails.user.id, result).then(response => {
-      console.log("posted to imagekit")
-      console.log(response)
+  useEffect( async ()=> {
+    const IMAGESIZE=128;
+    const resizeImage = await ImageManipulator.manipulateAsync(imageUri, [{
+      resize: {
+        height: IMAGESIZE,
+        width: IMAGESIZE
+      }
+    }],
+    {
+      base64: true,
+      format: ImageManipulator.SaveFormat.PNG
+    }
+    );
+    const base64 = resizeImage.base64;
+    postToImagekit(base64, userDetails.user.id, result).then(response => {
       const reportData = {
         historyId: response.id
       }
@@ -25,10 +40,10 @@ const ResultsPage = ({route, navigation}) => {
       setReady(true);
     })
   }, [])
-  if(result.healthy)
+  if(result.healthy || probability < 75)
   {
    return (
-     <HealthyPlantResult img={imageUri} userDetails={userDetails} navigation={navigation} ready={ready} setReady={setReady} reportData={reportData} />
+     <HealthyPlantResult img={imageUri} userDetails={userDetails} navigation={navigation} ready={ready} setReady={setReady} reportData={reportData} probability={probability} />
    ) 
   }
   return(

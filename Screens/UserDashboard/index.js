@@ -10,11 +10,11 @@ import ReportsTablet from "../../Components/DashboardMenu/ReportsTablet";
 import DashboardMenu from "../../Components/DashboardMenu";
 import { API_ROOT } from "../../apiroot";
 import NotCuredReport from "../ModalScreens/NotCuredReport";
-import { getDetectionHistory, getReports } from "./helper";
+import { getDetectionHistory, getReports, getRepliedReport } from "./helper";
+import ReportReply from "../ModalScreens/ReportReply";
 
 
 const findDetailsByDiseaseId = async (diseaseId) => {
-  console.log("finding details by disease id")
   const result = await fetch( API_ROOT + '/detection-details-by-disease-id/', {
     method: 'POST',
     headers: {
@@ -37,15 +37,22 @@ const UserDashboard = ({navigation, route}) => {
   const [emptyHistory, setEmptyHistory] = useState(false);
   const [emptyReports, setEmptyReports] = useState(false);
   const [reportModalVisible, setReportModalVisible] = useState(false);
+  const [reportResultVisible, setReportResultVisible] = useState(false)
 
   const [selectedtHistoryData, setSelectedHistoryData] = useState({})
   const [fetchedHistoryData, setFetchedHistoryData] = useState({})
   const [reportSend, setReportSend] = useState(true)
 
+  const [selectedReport, setSelectedReport] = useState({})
+  const [fetchedReportReply, setFetchedReportReply] = useState({})
+  const [isReportReplyLoading, setIsReportReplyLoading] = useState(true)
+
   const hideReportModal = () => setReportModalVisible(false);
   const showReportModal = () => setReportModalVisible(true);
-  const userId = userDetails.user.id
-  // const userId = '2'
+
+  const hideReportResultModal = () => setReportResultVisible(false);
+  const showReportResultModal = () => setReportResultVisible(true);
+  const userId = userDetails.user.id;
 
   //To get history about all detections and reports
   useEffect( () => {
@@ -55,8 +62,6 @@ const UserDashboard = ({navigation, route}) => {
         setEmptyHistory(true)
       }
       else {
-        console.log("history")
-        console.log(result)
         setHistory(result)
       }
     })
@@ -69,8 +74,6 @@ const UserDashboard = ({navigation, route}) => {
         setEmptyReports(true)
       }
       else {
-        console.log("reports")
-        console.log(result)
         setReports(result)
       }
     })
@@ -85,6 +88,18 @@ const UserDashboard = ({navigation, route}) => {
       })
     }
   }, [selectedtHistoryData] )
+
+  // to get individual report replies
+  useEffect( ()=> {
+    if(selectedReport.status === 'replied'){
+      setIsReportReplyLoading(true)
+      getRepliedReport(selectedReport.id).then((result) => {
+        setFetchedReportReply(result)
+        setIsReportReplyLoading(false)
+      })
+    }
+  }, [selectedReport])
+
 
   let toShow;
   if(menu === 'History') {
@@ -112,6 +127,8 @@ const UserDashboard = ({navigation, route}) => {
         return(
           <ReportsTablet 
             report={report}
+            showReportResultModal={showReportResultModal}
+            setSelectedReport={setSelectedReport}
             key={index}
             />
         )
@@ -141,6 +158,20 @@ const UserDashboard = ({navigation, route}) => {
               hideModal={hideReportModal}
               setReportSend={setReportSend}
             />
+          </DefaultModal>
+
+{/* // Modal for report reply */}
+          <DefaultModal
+            modalVisible={reportResultVisible}
+            hideModal={hideReportResultModal}
+          >
+            <ReportReply
+              loading = {isReportReplyLoading}
+              selectedReport={selectedReport} 
+              fetchedReportReply={fetchedReportReply}
+              hideModal={hideReportResultModal}
+            />
+
           </DefaultModal>
     </DefaultView>
   )

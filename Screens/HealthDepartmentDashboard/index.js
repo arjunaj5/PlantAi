@@ -26,7 +26,6 @@ const HealthDepartmentDashboard = ({navigation, route}) => {
   useEffect(()=> {
     submitted &&
     getReports().then((response) => {
-      console.log(response)
       setReports(response)
     })
   }, [submitted])

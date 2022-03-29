@@ -4,7 +4,7 @@ import React from "react";
 import DefaultView from "../../Layouts/DefaultView";
 import styles from "./styles";
 import * as ImagePicker from 'expo-image-picker';
-import * as FileSystem from 'expo-file-system';
+import * as ImageManipulator from 'expo-image-manipulator';
 import { API_ROOT } from "../../apiroot";
 
 
@@ -14,18 +14,22 @@ const gallery = require('../../assets/images/disease-detection/gallery.png')
 
 // Global style
 import globalStyles from "../../globalStyles";
+const IMAGESIZE=128;
 
 
 const detectDisease = async (uri) => {
-
-  let localUri = uri;
-  let filename = localUri.split('/').pop();
-
-  let match = /\.(\w+)$/.exec(filename);
-  let type = match ? `image/${match[1]}` : `image`;
-  const base64 = await FileSystem.readAsStringAsync(uri, { encoding: 'base64' });
-  // const base64 = uri.split(';base64,')[1]
-
+  const resizeImage = await ImageManipulator.manipulateAsync(uri, [{
+    resize: {
+      height: IMAGESIZE,
+      width: IMAGESIZE
+    }
+  }],
+  {
+    base64: true,
+    format: ImageManipulator.SaveFormat.PNG
+  }
+  )
+  const base64 = resizeImage.base64;
 
   let formData = new FormData();
   formData.append('photo', base64 );
@@ -82,7 +86,7 @@ const DiseaseDetection = ({ navigation, route }) => {
     const result = await ImagePicker.launchCameraAsync({
       allowsEditing: true,
       aspect: [1, 1],
-      quality: 0.5,
+      quality: 1,
     });
 
 
@@ -97,7 +101,6 @@ const DiseaseDetection = ({ navigation, route }) => {
     setDetecting(true)
     setPointerEvents('none')
     const detectionResult = await detectDisease(uri)
-    console.log(detectionResult)
     setDetecting(false)
     setPointerEvents('auto')
     navigation.navigate('ResultsPage', { detectionResult, imageUri: uri, userDetails})

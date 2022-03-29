@@ -58,7 +58,6 @@ const HealthDepartmentModal = ({ selectedReport, hideModal, setSubmitted }) => {
           setSubmitted(true)
           setButtonLoading(false)
           hideModal()
-          console.log(response)
         })
       }
       else {
@@ -79,7 +78,6 @@ const HealthDepartmentModal = ({ selectedReport, hideModal, setSubmitted }) => {
         sendNewCureData(body).then((response) => {
           setSubmitted(true)
           setButtonLoading(false);
-          console.log(response)
           hideModal()
         })
       }

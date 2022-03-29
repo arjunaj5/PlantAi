@@ -22,7 +22,6 @@ export const sendReport = async (historyId, reportStatus, comment) => {
 
 // get detection history for user
 export const getDetectionHistory = async (id) => {
-  console.log("gettng detection history")
   const body = {
     id
   }
@@ -38,11 +37,25 @@ export const getDetectionHistory = async (id) => {
 
 // Get details of all reports as array for specific user
 export const getReports = async (id) => {
-  console.log("gettng reports")
   const body = {
     user_id:id
   }
   const response = await fetch( API_ROOT + '/reports-retrieval-view/' ,{
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(body)
+  });
+  return await response.json();
+}
+
+// Get details about a replied report
+export const getRepliedReport = async (id) => {
+  const body = {
+    report_id:id
+  }
+  const response = await fetch( API_ROOT + '/replied-report-data/' ,{
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

@@ -14,8 +14,8 @@ const PlantCards = ({name, description, image_url, navigation, userDetails}) => 
               <Image style={styles.image} source={ {uri: image_url} } />
           </View>
           <View style={styles.cardtext}>
-              <Text style={styles.heading}> {name} </Text>
-              <Text style={styles.para}> { description.slice(0, 40) + ' ............' } </Text>
+              <Text style={styles.heading}>{name} </Text>
+              <Text style={styles.para}>{ description.slice(0, 60) + ' ......' } </Text>
           </View>
       </Pressable> 
   )

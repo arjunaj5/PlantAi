@@ -31,7 +31,8 @@ const styles = StyleSheet.create({
   },
   para: {
       fontSize: 18,
-      fontWeight: "400"
+      fontWeight: "400",
+      textAlign: 'justify'
   },
   primaryText: {
     fontSize: 20,

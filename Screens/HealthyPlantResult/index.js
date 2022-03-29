@@ -14,8 +14,11 @@ import NotDetectedReport from '../ModalScreens/NotDetectedReport';
 
 
 
-const HealthyPlantResult = ({ img, userDetails, navigation, ready, setReady, reportData }) => {
+const HealthyPlantResult = ({ img, userDetails, navigation, ready, setReady, reportData, probability }) => {
   const [modalVisible, setModalVisible] = useState(false);
+  const message = (
+    probability < 75 ? 'Could not detect disease': 'Your Plant Is Healthy'
+  )
 
   const hideModal = () => setModalVisible(false);
   const showModal = () => setModalVisible(true);
@@ -28,7 +31,7 @@ const HealthyPlantResult = ({ img, userDetails, navigation, ready, setReady, rep
           source={{uri: img}}
           style={styles.image}
           />
-          <Text style={styles.text}>Your Plant Is Healthy</Text>
+          <Text style={styles.text}>{message}</Text>
         </View>
         <View>
           <Button style={styles.button} color = "#3BA776" mode="contained" onPress={showModal} dark={true}>
@@ -38,7 +41,7 @@ const HealthyPlantResult = ({ img, userDetails, navigation, ready, setReady, rep
         </View>
       </View>
           <DefaultModal hideModal={hideModal} modalVisible={modalVisible} >
-            <NotDetectedReport imageUrl={img} ready={ready} setReady={setReady} reportData={reportData} />
+            <NotDetectedReport imageUrl={img} ready={ready} setReady={setReady} reportData={reportData} hideModal={hideModal} />
           </DefaultModal>
     </DefaultView>
   )
