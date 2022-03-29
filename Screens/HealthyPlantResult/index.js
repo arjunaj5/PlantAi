@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import React from 'react';
 import { View, Text, Image } from 'react-native';
-import { Button, Portal, Provider, Modal } from 'react-native-paper';
+import { Button } from 'react-native-paper';
 import styles from './styles'
 import DefaultView from '../../Layouts/DefaultView';
+import { PROBABILITY } from '../../apiroot';
 
 // Modal 
 import DefaultModal from '../../Layouts/DefaultModal';
@@ -17,7 +18,7 @@ import NotDetectedReport from '../ModalScreens/NotDetectedReport';
 const HealthyPlantResult = ({ img, userDetails, navigation, ready, setReady, reportData, probability }) => {
   const [modalVisible, setModalVisible] = useState(false);
   const message = (
-    probability < 75 ? 'Could not detect disease': 'Your Plant Is Healthy'
+    probability < PROBABILITY ? 'Could not detect disease': 'Your Plant Is Healthy'
   )
 
   const hideModal = () => setModalVisible(false);

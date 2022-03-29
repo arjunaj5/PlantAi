@@ -1,11 +1,11 @@
 import { API_ROOT } from "../../apiroot";
-import * as FileSystem from 'expo-file-system';
 
 export const postToImagekit = async (base64, userId, detectionResult) => {
   // const base64 = uri
   let formData = new FormData();
   formData.append('base64', base64 );
   formData.append('userId', userId);
+  formData.append('probability', detectionResult.probability)
   if(detectionResult.healthy){
     formData.append('healthy', true);
   }

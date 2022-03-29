@@ -7,10 +7,13 @@ import * as ImageManipulator from 'expo-image-manipulator';
 
 
 import { postToImagekit } from './helper';
+import { PROBABILITY } from '../../apiroot';
 
 
 const ResultsPage = ({route, navigation}) => {
   const result = route.params.detectionResult
+  console.log("result:")
+  console.log(result)
   const probability = result.probability
   const imageUri = route.params.imageUri
   const userDetails = route.params.userDetails
@@ -20,6 +23,9 @@ const ResultsPage = ({route, navigation}) => {
 
   useEffect( async ()=> {
     const IMAGESIZE=128;
+    if(probability < PROBABILITY) {
+      result.healthy = true;
+    }
     const resizeImage = await ImageManipulator.manipulateAsync(imageUri, [{
       resize: {
         height: IMAGESIZE,
@@ -40,7 +46,7 @@ const ResultsPage = ({route, navigation}) => {
       setReady(true);
     })
   }, [])
-  if(result.healthy || probability < 75)
+  if(result.healthy || probability < PROBABILITY )
   {
    return (
      <HealthyPlantResult img={imageUri} userDetails={userDetails} navigation={navigation} ready={ready} setReady={setReady} reportData={reportData} probability={probability} />
