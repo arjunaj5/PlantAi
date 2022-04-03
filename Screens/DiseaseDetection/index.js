@@ -114,7 +114,7 @@ const DiseaseDetection = ({ navigation, route }) => {
 
       <View pointerEvents={pointerEvents} style={styles.container}>
         <Pressable 
-          style={[styles.imageContainer, globalStyles.boxShadow]}
+          style={[styles.imageContainer, globalStyles.boxShadow, {marginBottom:40}]}
           onPress={openCamera}
         >
           <Image source={camera} style={styles.image} />

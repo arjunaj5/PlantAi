@@ -35,8 +35,9 @@ const Home = ({ navigation, route }) => {
       <View style={styles.container}>
         <SearchBar img={search} navigation={navigation} homeNavigationRoute={route} query={query} setQuery={setQuery} />
         <Weather />
-        <News />
-        <Button style={styles.button} color = "#3BA776" mode="contained" onPress={handlePress} dark={true}>
+        {/* <News /> */}
+        <Button style={styles.button} contentStyle={{height:100}}
+           color = "#3BA776" mode="contained" onPress={handlePress} dark={true} labelStyle={{fontSize: 17}}>
           DISEASE DETECTION
         </Button>
       </View>

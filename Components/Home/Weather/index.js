@@ -46,7 +46,7 @@ const Weather = () => {
   if(!permission){
     return(
       <View>
-        <Text>Location permission required</Text>
+        <Text>Location permission required for weather</Text>
       </View>
     )
   }

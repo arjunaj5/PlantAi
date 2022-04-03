@@ -2,20 +2,19 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create( {
   image: {
-    width: 80,
-    height: 80
+    width: 100,
+    height: 100
   },
   container: {
-    justifyContent: "space-evenly",
-    flexDirection: 'row',
+    justifyContent: "center",
     alignItems: "center",
     width: '100%',
-    height: '100%'
+    height: '90%'
   },
   imageContainer: {
     alignItems: "center",
     backgroundColor: '#fff',
-    width: '35%',
+    width: '55%',
     padding: 10,
     borderRadius: 19,
   },
@@ -24,10 +23,10 @@ const styles = StyleSheet.create( {
   },
   activityIndicator: {
     position: "absolute",
+    zIndex: 2,
     left: 0,
     right: 0,
-    top: 0,
-    bottom: 0,
+    bottom: 30,
     alignItems: 'center',
     justifyContent: 'center'
 

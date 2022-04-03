@@ -58,7 +58,7 @@ const SearchPage = ({ navigation, route }) => {
                 <SearchBar img={search} query={query} setQuery={setQuery} onSearch={getPlants} />
             </View>
             {loading && <ActivityIndicator size='large' color="#3BA776" />}
-            <ScrollView style={{maxHeight: '70%'}} contentContainerStyle={{paddingBottom: 20}} >
+            <ScrollView style={{maxHeight: '70%'}} contentContainerStyle={{paddingBottom: 20, width: '100%'}} >
             {! loading && plants.map( (plant, index) => {
               return (
                 <PlantCards 

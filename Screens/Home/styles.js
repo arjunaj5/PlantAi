@@ -5,9 +5,8 @@ const styles = StyleSheet.create({
     width: '90%',
   },
   button: {
-    marginTop: 30,
+    marginTop: 80,
     borderRadius: 19,
-    width:'60%',
     alignSelf: 'center'
   }
 })

@@ -9,7 +9,6 @@ const ActiveTablet = ({active, report, setSelectedReport, showAdminModal }) => {
   const comments = report.comments;
   const createdAt = report.created_at;
   const modifiedAt = report.modified_at;
-  console.log(report)
   const handlePress = () => {
     if(active){
       setSelectedReport(report)
