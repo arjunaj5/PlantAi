@@ -12,12 +12,12 @@ const styles = StyleSheet.create({
     ...globalStyles.boxShadow
   },
   row: {
-    flexDirection: "row",
-    justifyContent: "space-between"
+    flexDirection: "row"
   },
   comments: {
     maxWidth: 200,
-    borderRadius: 5
+    marginLeft: 10,
+    borderRadius: 5,
   },
   heading: {
     marginBottom: 5,

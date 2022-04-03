@@ -66,12 +66,7 @@ const HealthDepartmentDashboard = ({navigation, route}) => {
     tab1: 'Active',
     tab2: 'Completed'
   }
-  const userDetails = route.params.userDetails
-  // const userDetails = {
-  //   user: {
-  //     username: "AdminHealth"
-  //   }
-  // }
+  const userDetails = route.params.user;
   return (
     <DefaultView navigation={navigation} userDetails={userDetails}>
       <DashboardMenu menu={menu} setMenu={setMenu} toShow={toShow} tabs={tabs} />

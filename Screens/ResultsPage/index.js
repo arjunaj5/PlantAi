@@ -11,13 +11,11 @@ import { PROBABILITY } from '../../apiroot';
 
 
 const ResultsPage = ({route, navigation}) => {
-  const result = route.params.detectionResult
-  console.log("result:")
-  console.log(result)
-  const probability = result.probability
-  const imageUri = route.params.imageUri
-  const userDetails = route.params.userDetails
-  const [ready, setReady] = useState(false)
+  const result = route.params.detectionResult;
+  const probability = result.probability;
+  const imageUri = route.params.imageUri;
+  const userDetails = route.params.userDetails;
+  const [ready, setReady] = useState(false);
 
   const [reportData, setReportData] = useState({})
 
