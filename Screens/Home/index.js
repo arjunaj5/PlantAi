@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import { Button } from 'react-native-paper';
 import News from '../../Components/Home/News';
@@ -7,10 +7,19 @@ import Weather from '../../Components/Home/Weather';
 import styles from './styles'
 import DefaultView from '../../Layouts/DefaultView';
 
+
 const search = require('../../assets/images/Home/search.png')
 
 const Home = ({ navigation, route }) => {
   const [query, setQuery] = useState("")
+  useEffect(() => {
+    ( async () => {
+
+    }
+
+    )();
+  }, [])
+
 
   const handlePress = () => {
     if(route.params) {

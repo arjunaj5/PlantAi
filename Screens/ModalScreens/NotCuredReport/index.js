@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { View , Text, TextInput, Image} from "react-native";
+import { View , Text, TextInput, Image, ToastAndroid} from "react-native";
 import { Button } from "react-native-paper";
 
 
 import styles from './styles';
+
 import globalStyles from "../../../globalStyles";
 
 import { sendReport } from "../../UserDashboard/helper";
@@ -24,6 +25,7 @@ const NotCuredReport = ({selectedtHistoryData, fetchedHistoryData, hideModal, se
     setLoading(true);
     setReportSend(false)
     sendReport(historyId, reportStatus, comment).then(response => {
+      ToastAndroid.show('Report sent successfully!', ToastAndroid.SHORT);
       setLoading(false);
       hideModal()
       setReportSend(true)

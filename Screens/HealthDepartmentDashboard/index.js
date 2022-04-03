@@ -41,6 +41,7 @@ const HealthDepartmentDashboard = ({navigation, route}) => {
     activeReports.map((report, index) => {
       return (
         <ActiveTablet
+          active={true}
           report={report}
           setSelectedReport={setSelectedReport}
           key={index}
@@ -54,6 +55,7 @@ const HealthDepartmentDashboard = ({navigation, route}) => {
     completedReports.map((report, index) => {
       return (
         <ActiveTablet
+          active={false}
           report={report}
           key={index}
         />

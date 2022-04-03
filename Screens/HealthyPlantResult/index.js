@@ -42,7 +42,7 @@ const HealthyPlantResult = ({ img, userDetails, navigation, ready, setReady, rep
         </View>
       </View>
           <DefaultModal hideModal={hideModal} modalVisible={modalVisible} >
-            <NotDetectedReport imageUrl={img} ready={ready} setReady={setReady} reportData={reportData} hideModal={hideModal} />
+            <NotDetectedReport imageUrl={img} ready={ready} setReady={setReady} reportData={reportData} hideModal={hideModal} navigation={navigation} />
           </DefaultModal>
     </DefaultView>
   )

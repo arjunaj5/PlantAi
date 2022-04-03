@@ -152,6 +152,7 @@ const UserDashboard = ({navigation, route}) => {
             modalVisible={reportModalVisible}
             hideModal={hideReportModal}
           >
+{/* // Modal for report by user */}
             <NotCuredReport 
               selectedtHistoryData={selectedtHistoryData}
               fetchedHistoryData={fetchedHistoryData}
@@ -160,7 +161,7 @@ const UserDashboard = ({navigation, route}) => {
             />
           </DefaultModal>
 
-{/* // Modal for report reply */}
+{/* // Modal to view report reply */}
           <DefaultModal
             modalVisible={reportResultVisible}
             hideModal={hideReportResultModal}

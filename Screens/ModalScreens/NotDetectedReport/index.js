@@ -9,7 +9,7 @@ import { sendReport } from "../../UserDashboard/helper";
 
 
 
-const NotDetectedReport = ({imageUrl, ready, setReady, reportData, hideModal}) => {
+const NotDetectedReport = ({imageUrl, ready, setReady, reportData, hideModal, navigation}) => {
   const [comments, setComments] = useState('')
 
   const handlePress = () => {
@@ -18,6 +18,7 @@ const NotDetectedReport = ({imageUrl, ready, setReady, reportData, hideModal}) =
       setReady(true)
       ToastAndroid.show('Report sent successfully!', ToastAndroid.SHORT);
       hideModal();
+      navigation.goBack();
     })
   }
 

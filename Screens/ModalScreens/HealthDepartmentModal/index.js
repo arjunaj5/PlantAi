@@ -43,7 +43,7 @@ const HealthDepartmentModal = ({ selectedReport, hideModal, setSubmitted }) => {
     setButtonLoading(true)
     setEmptyError(false)
     if(!detected || detected && diseaseCorrectionCheck){
-      const emptyFields =[disease, diseaseDescription, cure, cureDescription].filter((element) => element.length === 0)
+      const emptyFields = [disease, diseaseDescription, cure, cureDescription].filter((element) => element.length === 0)
       if(emptyFields.length === 0){
         setSubmitted(false)
         const body = {

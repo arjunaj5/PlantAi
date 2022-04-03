@@ -1,5 +1,4 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, {useEffect} from 'react';
 import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -15,12 +14,19 @@ import NewsPage from './Screens/NewsPage';
 import PlantPage from './Screens/PlantPage';
 import ResultsPage from './Screens/ResultsPage';
 import SearchPage from './Screens/SearchPage';
-import DefaultView from './Layouts/DefaultView';
+
+import * as Network from 'expo-network';
 
 import UserDashboard from './Screens/UserDashboard';
 import HealthDepartmentDashboard from './Screens/HealthDepartmentDashboard';
 
 export default function App() {
+
+  useEffect( async ()=> {
+    const networkState = await Network.getNetworkStateAsync();
+    console.log(networkState)
+
+  },[])
  
   return (
    
